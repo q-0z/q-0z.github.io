@@ -1,265 +1,192 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Abhishek Roy - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <canvas id="game-background"></canvas>
-    <button id="sound-toggle" aria-label="Toggle sound effects">🔊</button>
+    <div id="sound-toggle">🔊</div>
     <header>
         <h1>Abhishek Roy</h1>
-        <nav role="navigation">
-            <a href="#about" aria-label="About section">About</a>
-            <a href="#projects" aria-label="Projects section">Projects</a>
-            <a href="#skills" aria-label="Skills section">Skills</a>
-            <a href="#contact" aria-label="Contact section">Contact</a>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
     <div class="main-content">
         <section id="about" class="about">
+            <h2>ABOUT ME</h2>
             <div class="container">
-                <h2>ABOUT ME</h2>
                 <div class="about-profile">
-                    <img src="images/profile.jpg" alt="Abhishek Roy">
+                    <img src="images/profile.jpg" alt="Profile Picture">
                     <div class="stat-container">
                         <div class="stat-bar" style="--width: 30%;">
                             <span class="stat-label">Years of Experience</span>
                             <div class="stat-fill"></div>
-                            <div class="stat-tooltip">6+ years in game development</div>
+                            <span class="stat-tooltip">6+ years in game development</span>
                         </div>
                         <div class="stat-bar" style="--width: 80%;">
                             <span class="stat-label">Creative Vision</span>
                             <div class="stat-fill"></div>
-                            <div class="stat-tooltip">Innovative design expertise</div>
+                            <span class="stat-tooltip">Innovative design expertise</span>
                         </div>
                         <div class="stat-bar" style="--width: 90%;">
                             <span class="stat-label">Technical expertise</span>
                             <div class="stat-fill"></div>
-                            <div class="stat-tooltip">Advanced programming skills</div>
+                            <span class="stat-tooltip">Advanced programming skills</span>
                         </div>
                     </div>
                 </div>
-                <div class="about-text" id="about-text"></div>
+                <p id="about-text" class="about-text"></p>
             </div>
         </section>
 
         <section id="projects" class="projects">
+            <h2>PROJECTS</h2>
             <div class="container">
-                <h2>PROJECTS</h2>
                 <div class="projects-grid">
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=350&h=250&q=80" alt="Vega Metal Structures screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="vega-metal-structures">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=350&h=250&q=80" alt="Vega Metal Structures">
                         <h3>Vega Metal Structures</h3>
                         <p>Ecommerce constructing building site built with Three.js, where users can choose and customize buildings to their needs.</p>
-                        <a href="https://vegametalstructures.com" target="_blank" aria-label="Visit Vega Metal Structures website">Visit Website</a>
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1610986603166-fc6b843ce8dd?auto=format&fit=crop&w=350&h=250&q=80" alt="Astral 3D Visualizer screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="astral-3d-visualizer">
+                        <img src="https://images.unsplash.com/photo-1610986603166-fc6b843ce8dd?auto=format&fit=crop&w=350&h=250&q=80" alt="Astral 3D Visualizer">
                         <h3>Astral 3D Visualizer</h3>
                         <p>A Unity and Android app using C# and Java to stimulate thought and relaxation through immersive 3D visuals for meditation.</p>
-                        <a href="https://play.google.com/store/apps/details?id=astral.teffexf" target="_blank" aria-label="View Astral 3D Visualizer on Google Play">View on Google Play</a>
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1576091160396-466c66a9a184?auto=format&fit=crop&w=350&h=250&q=80" alt="JoGo Health screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="jogo-health">
+                        <img src="https://images.unsplash.com/photo-1576091160396-466c66a9a184?auto=format&fit=crop&w=350&h=250&q=80" alt="JoGo Health">
                         <h3>JoGo Health</h3>
                         <p>A React Native and Unity app using C# and Java, enabling neuromuscular patients to play games using muscle contractions from Shimmer wearable devices.</p>
-                        <a href="https://www.jogohealth.com/" target="_blank" aria-label="Visit JoGo Health website">Visit Website</a>
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88d0f?auto=format&fit=crop&w=350&h=250&q=80" alt="VizIT App screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="vizit-app">
+                        <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88d0f?auto=format&fit=crop&w=350&h=250&q=80" alt="VizIT App">
                         <h3>VizIT App</h3>
                         <p>A Unity and C# survey app to log and scan market products via serial numbers and barcodes, analyzing data for insights.</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.connect.vizitprod" target="_blank" aria-label="View VizIT App on Google Play">View on Google Play</a>
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1598488035139-bdbb2239ce0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Word Mason screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="word-mason">
+                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2239ce0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Word Mason">
                         <h3>Word Mason</h3>
                         <p>A 2D Tetris-style puzzle game in Unity and C#, where players form words in multiple languages to score points.</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.biswagames.wordpicker" target="_blank" aria-label="View Word Mason on Google Play">View on Google Play</a>
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1623922839764-463b0e2b9b86?auto=format&fit=crop&w=350&h=250&q=80" alt="Mind Surfer screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="mind-surfer">
+                        <img src="https://images.unsplash.com/photo-1623922839764-463b0e2b9b86?auto=format&fit=crop&w=350&h=250&q=80" alt="Mind Surfer">
                         <h3>Mind Surfer</h3>
                         <p>A 2D endless runner puzzle game in Unity and C#, where players solve puzzles on the run to avoid obstacles.</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.biswagames.mindsurfer" target="_blank" aria-label="View Mind Surfer on Google Play">View on Google Play</a>
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Titans vs Mutants screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="titans-vs-mutants">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Titans vs Mutants">
                         <h3>Titans vs Mutants</h3>
                         <p>A 3D multiplayer VR fighting game in Unreal Engine 4 and C++ with PvP, featuring mythical gods with hand- and head-tracking ability systems.</p>
-                        <!-- <p>No public link available.</p> -->
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1599447332257-49e96e1582ac?auto=format&fit=crop&w=350&h=250&q=80" alt="Casino Games screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="lets-go-see">
+                        <img src="https://images.unsplash.com/photo-1599447332257-49e96e1582ac?auto=format&fit=crop&w=350&h=250&q=80" alt="Let's Go See">
                         <h3>Let's Go See</h3>
-                        <p>Let's Go See is an entertaining, educational and inspirational brand, designed to bring learning to life through fun, adventure, and discovery! </p>
-                        <a href="https://apps.apple.com/in/app/lets-go-see-kids-ar-game/id1536127623" target="_blank" aria-label="View Let's Go see on Apple Store">View on Google Play</a>
-
+                        <p>Let's Go See is an entertaining, educational and inspirational brand, designed to bring learning to life through fun, adventure, and discovery!</p>
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1614014969551-92e8b998d7f2?auto=format&fit=crop&w=350&h=250&q=80" alt="Rotate3d screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="rotate3d">
+                        <img src="https://images.unsplash.com/photo-1614014969551-92e8b998d7f2?auto=format&fit=crop&w=350&h=250&q=80" alt="Rotate3d">
                         <h3>Rotate3d</h3>
                         <p>A 3D rhythmic endless runner in Unreal Engine 4 and C++, where players dodge obstacles synchronized with music beats.</p>
-                        <a href="https://www.oculus.com/experiences/rift/3505572796210615/" target="_blank" aria-label="View Rotate3d on Oculus">View on Oculus</a>
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Boomheads screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="boomheads">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Boomheads">
                         <h3>Boomheads</h3>
                         <p>A Bomberman-style deathmatch game in Unreal Engine 5 and C++ with multiplayer, featuring coin collection and player elimination.</p>
-                        <!-- <p>No public link available.</p> -->
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1599949849315-4b2c2316560f?auto=format&fit=crop&w=350&h=250&q=80" alt="Mobile Star Dancing screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="mobile-star-dancing">
+                        <img src="https://images.unsplash.com/photo-1599949849315-4b2c2316560f?auto=format&fit=crop&w=350&h=250&q=80" alt="Mobile Star Dancing">
                         <h3>Mobile Star Dancing</h3>
                         <p>A multiplayer MMORPG in Unreal Engine 5 and C++, with character customization, dance events, and social interactions like marriage.</p>
-                        <a href="https://drive.google.com/file/d/1INNv_nB2SJ0OM_hLiaxkOhyAGeis9zSi/view" target="_blank" aria-label="View On Drive">View Link</a>
-
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1598488035139-bdbb2239ce0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Frog Jumper screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="frog-jumper">
+                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2239ce0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Frog Jumper">
                         <h3>Frog Jumper</h3>
                         <p>A 3D platformer in Unreal Engine 5 and C++, similar to Flappy Bird, with realistic graphics, enemy AI, and leaderboards.</p>
-                        <!-- <p>No public link available.</p> -->
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1623922839764-463b0e2b9b86?auto=format&fit=crop&w=350&h=250&q=80" alt="Zomborgs screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="zomborgs">
+                        <img src="https://images.unsplash.com/photo-1623922839764-463b0e2b9b86?auto=format&fit=crop&w=350&h=250&q=80" alt="Zomborgs">
                         <h3>Zomborgs</h3>
                         <p>A multiplayer Street Fighter-style game in Unity and C#, with advanced leveling, tournaments, combos, and unique character movesets.</p>
-                        <!-- <p>No public link available.</p> -->
                     </div>
-                    <div class="project-card" role="article">
-                        <!-- <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Casino VR screenshot" loading="lazy"> -->
+                    <div class="project-card" data-project-id="casino-vr">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Casino VR">
                         <h3>Casino VR</h3>
                         <p>A VR multiplayer casino game in Unity and C#, featuring Blackjack, Poker, Slots, and EU Roulette with avatar customization and MMO elements.</p>
-                        <a href="https://drive.google.com/file/d/13sbrPTskt40e_jqc3N8SkL8tWZoazc3k/view" target="_blank" aria-label="View On Drive">View Link</a>
-                        
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="skills" class="skills">
+            <h2>SKILLS</h2>
             <div class="container">
-                <h2>SKILLS</h2>
                 <div class="skills-grid">
-                    <div class="skill" role="listitem">
-                        <!-- <img src="images/ue.jpg" alt="Unreal Engine logo" class="skill-icon"> -->
-                        Unreal Engine
-                        <!-- <div class="skill-tooltip">Unreal Engine</div> -->
-                    </div>
-                    <div class="skill" role="listitem">
-                        <!-- <img src="images/unity.png" alt="Unreal Engine logo" class="skill-icon"> -->
-                        Unity
-                        <!-- <div class="skill-tooltip">Unity</div> -->
-                    </div>
-                    <div class="skill" role="listitem">
-                         <!-- <img src="images/CPP.png" alt="Unreal Engine logo" class="skill-icon"> -->
-                        C++
-                        <!-- <div class="skill-tooltip">C++</div> -->
-                    </div>
-                    <div class="skill" role="listitem">
-                         <!-- <img src="images/Csharp.png" alt="Unreal Engine logo" class="skill-icon"> -->
-                        C#
-                        <!-- <div class="skill-tooltip">C#</div> -->
-                    </div>
-                    <div class="skill" role="listitem">
-                        AR VR MR
-                        <!-- <div class="skill-tooltip">Expert in building immersive game worlds with Unreal Engine.</div> -->
-                    </div>
-                    <div class="skill" role="listitem">
-                        Multiplayer
-                        <!-- <div class="skill-tooltip">Expert in building immersive game worlds with Unreal Engine.</div> -->
-                    </div>
-                    <div class="skill" role="listitem">
-                        Blueprint
-                        <!-- <div class="skill-tooltip">Expert in building immersive game worlds with Unreal Engine.</div> -->
-                    </div>
-                    <div class="skill" role="listitem">
-                        Three JS
-                        <!-- <div class="skill-tooltip">Expert in building immersive game worlds with Unreal Engine.</div> -->
-                    </div>
-                    <div class="skill" role="listitem">
-                        GIT
-                        <!-- <div class="skill-tooltip">Expert in building immersive game worlds with Unreal Engine.</div> -->
-                    </div>
-                    <div class="skill" role="listitem">
-                        Android IOS
-                        <!-- <div class="skill-tooltip">Expert in building immersive game worlds with Unreal Engine.</div> -->
-                    </div>
+                    <div class="skill">Unreal Engine</div>
+                    <div class="skill">Unity</div>
+                    <div class="skill">C++</div>
+                    <div class="skill">C#</div>
+                    <div class="skill">AR VR MR</div>
+                    <div class="skill">Multiplayer</div>
+                    <div class="skill">Blueprint</div>
+                    <div class="skill">Three JS</div>
+                    <div class="skill">GIT</div>
+                    <div class="skill">Android IOS</div>
                 </div>
             </div>
         </section>
 
         <section id="contact" class="contact">
+            <h2>CONTACT</h2>
             <div class="container">
-                <h2>CONTACT</h2>
-                <div class="contact-text" id="contact-text"></div>
+                <p id="contact-text" class="contact-text"></p>
                 <div class="contact-links">
-                    <a href="mailto:aroy9756@gmail.com" class="contact-link" aria-label="Send email to Abhishek Roy">
+                    <a href="mailto:[email protected]" class="contact-link">
                         Email
-                        <div class="contact-tooltip">aroy9756@gmail.com</div>
+                        <span class="contact-tooltip">[email protected]</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/aroyq" target="_blank" class="contact-link" aria-label="Visit Abhishek Roy's LinkedIn profile">
+                    <a href="https://www.linkedin.com/in/aroyq" class="contact-link" target="_blank" rel="noopener noreferrer">
                         LinkedIn
-                        <div class="contact-tooltip">https://www.linkedin.com/in/aroyq</div>
+                        <span class="contact-tooltip">https://www.linkedin.com/in/aroyq</span>
                     </a>
-                    <a href="tel:+918276886958" target="_blank" class="contact-link" aria-label="Visit Abhishek Roy's LinkedIn profile">
+                    <a href="tel:+91-8276886958" class="contact-link">
                         Contact No
-                        <div class="contact-tooltip">+91-8276886958</div>
-
+                        <span class="contact-tooltip">+91-8276886958</span>
                     </a>
                 </div>
             </div>
         </section>
+    </div>
+
+    <div id="project-modal" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close"></span>
+            <div class="modal-body">
+                <div class="modal-description">
+                    <h3 id="modal-title"></h3>
+                    <p id="modal-text"></p>
+                    <div class="modal-links">
+                        <!-- Links will be dynamically populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="modal-slider">
+                    <div class="slider-container">
+                        <div id="slider-images" class="slider-images"></div>
+                    </div>
+                    <button id="slider-prev" class="slider-prev">←</button>
+                    <button id="slider-next" class="slider-next">→</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer>
