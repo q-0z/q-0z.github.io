@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhishek Roy - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Roboto:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <canvas id="game-background"></canvas>
-    <div id="sound-toggle">🔊</div>
+    <button id="sound-toggle">🔊</button>
     <header>
         <h1>Abhishek Roy</h1>
         <nav>
@@ -20,7 +19,6 @@
             <a href="#contact">Contact</a>
         </nav>
     </header>
-
     <div class="main-content">
         <section id="about" class="about">
             <h2>ABOUT ME</h2>
@@ -28,171 +26,158 @@
                 <div class="about-profile">
                     <img src="images/profile.jpg" alt="Profile Picture">
                     <div class="stat-container">
-                        <div class="stat-bar" style="--width: 30%;">
-                            <span class="stat-label">Years of Experience</span>
-                            <div class="stat-fill"></div>
-                            <span class="stat-tooltip">6+ years in game development</span>
-                        </div>
                         <div class="stat-bar" style="--width: 80%;">
-                            <span class="stat-label">Creative Vision</span>
+                            <div class="stat-label">Years of Experience</div>
                             <div class="stat-fill"></div>
-                            <span class="stat-tooltip">Innovative design expertise</span>
+                            <span class="stat-tooltip">80%</span>
                         </div>
                         <div class="stat-bar" style="--width: 90%;">
-                            <span class="stat-label">Technical expertise</span>
+                            <div class="stat-label">Creative Vision</div>
                             <div class="stat-fill"></div>
-                            <span class="stat-tooltip">Advanced programming skills</span>
+                            <span class="stat-tooltip">90%</span>
+                        </div>
+                        <div class="stat-bar" style="--width: 85%;">
+                            <div class="stat-label">Technical Expertise</div>
+                            <div class="stat-fill"></div>
+                            <span class="stat-tooltip">85%</span>
                         </div>
                     </div>
                 </div>
-                <p id="about-text" class="about-text"></p>
+                <div class="about-text" id="about-text"></div>
             </div>
         </section>
-
         <section id="projects" class="projects">
             <h2>PROJECTS</h2>
             <div class="container">
                 <div class="projects-grid">
                     <div class="project-card" data-project-id="vega-metal-structures">
-                        <img src="images/Projects/Vega_1.png" alt="Vega Metal Structures">
+                        <img src="images/Projects/Vega_0.png" alt="Vega Metal Structures">
                         <h3>Vega Metal Structures</h3>
                         <p>Ecommerce constructing building site built with Three.js, where users can choose and customize buildings to their needs.</p>
                     </div>
                     <div class="project-card" data-project-id="astral-3d-visualizer">
-                        <img src="https://images.unsplash.com/photo-1610986603166-fc6b843ce8dd?auto=format&fit=crop&w=350&h=250&q=80" alt="Astral 3D Visualizer">
+                        <img src="https://via.placeholder.com/350x180" alt="Astral 3D Visualizer">
                         <h3>Astral 3D Visualizer</h3>
                         <p>A Unity and Android app using C# and Java to stimulate thought and relaxation through immersive 3D visuals for meditation.</p>
                     </div>
                     <div class="project-card" data-project-id="jogo-health">
-                        <img src="https://images.unsplash.com/photo-1576091160396-466c66a9a184?auto=format&fit=crop&w=350&h=250&q=80" alt="JoGo Health">
+                        <img src="https://via.placeholder.com/350x180" alt="JoGo Health">
                         <h3>JoGo Health</h3>
                         <p>A React Native and Unity app using C# and Java, enabling neuromuscular patients to play games using muscle contractions from Shimmer wearable devices.</p>
                     </div>
                     <div class="project-card" data-project-id="vizit-app">
-                        <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88d0f?auto=format&fit=crop&w=350&h=250&q=80" alt="VizIT App">
+                        <img src="https://via.placeholder.com/350x180" alt="VizIT App">
                         <h3>VizIT App</h3>
                         <p>A Unity and C# survey app to log and scan market products via serial numbers and barcodes, analyzing data for insights.</p>
                     </div>
                     <div class="project-card" data-project-id="word-mason">
-                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2239ce0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Word Mason">
+                        <img src="https://via.placeholder.com/350x180" alt="Word Mason">
                         <h3>Word Mason</h3>
                         <p>A 2D Tetris-style puzzle game in Unity and C#, where players form words in multiple languages to score points.</p>
                     </div>
                     <div class="project-card" data-project-id="mind-surfer">
-                        <img src="https://images.unsplash.com/photo-1623922839764-463b0e2b9b86?auto=format&fit=crop&w=350&h=250&q=80" alt="Mind Surfer">
+                        <img src="https://via.placeholder.com/350x180" alt="Mind Surfer">
                         <h3>Mind Surfer</h3>
                         <p>A 2D endless runner puzzle game in Unity and C#, where players solve puzzles on the run to avoid obstacles.</p>
                     </div>
                     <div class="project-card" data-project-id="titans-vs-mutants">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Titans vs Mutants">
+                        <img src="https://via.placeholder.com/350x180" alt="Titans vs Mutants">
                         <h3>Titans vs Mutants</h3>
                         <p>A 3D multiplayer VR fighting game in Unreal Engine 4 and C++ with PvP, featuring mythical gods with hand- and head-tracking ability systems.</p>
                     </div>
                     <div class="project-card" data-project-id="lets-go-see">
-                        <img src="https://images.unsplash.com/photo-1599447332257-49e96e1582ac?auto=format&fit=crop&w=350&h=250&q=80" alt="Let's Go See">
+                        <img src="https://via.placeholder.com/350x180" alt="Let's Go See">
                         <h3>Let's Go See</h3>
                         <p>Let's Go See is an entertaining, educational and inspirational brand, designed to bring learning to life through fun, adventure, and discovery!</p>
                     </div>
                     <div class="project-card" data-project-id="rotate3d">
-                        <img src="https://images.unsplash.com/photo-1614014969551-92e8b998d7f2?auto=format&fit=crop&w=350&h=250&q=80" alt="Rotate3d">
+                        <img src="https://via.placeholder.com/350x180" alt="Rotate3d">
                         <h3>Rotate3d</h3>
                         <p>A 3D rhythmic endless runner in Unreal Engine 4 and C++, where players dodge obstacles synchronized with music beats.</p>
                     </div>
                     <div class="project-card" data-project-id="boomheads">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Boomheads">
+                        <img src="https://via.placeholder.com/350x180" alt="Boomheads">
                         <h3>Boomheads</h3>
                         <p>A Bomberman-style deathmatch game in Unreal Engine 5 and C++ with multiplayer, featuring coin collection and player elimination.</p>
                     </div>
                     <div class="project-card" data-project-id="mobile-star-dancing">
-                        <img src="https://images.unsplash.com/photo-1599949849315-4b2c2316560f?auto=format&fit=crop&w=350&h=250&q=80" alt="Mobile Star Dancing">
+                        <img src="https://via.placeholder.com/350x180" alt="Mobile Star Dancing">
                         <h3>Mobile Star Dancing</h3>
                         <p>A multiplayer MMORPG in Unreal Engine 5 and C++, with character customization, dance events, and social interactions like marriage.</p>
                     </div>
                     <div class="project-card" data-project-id="frog-jumper">
-                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2239ce0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Frog Jumper">
+                        <img src="https://via.placeholder.com/350x180" alt="Frog Jumper">
                         <h3>Frog Jumper</h3>
                         <p>A 3D platformer in Unreal Engine 5 and C++, similar to Flappy Bird, with realistic graphics, enemy AI, and leaderboards.</p>
                     </div>
                     <div class="project-card" data-project-id="zomborgs">
-                        <img src="https://images.unsplash.com/photo-1623922839764-463b0e2b9b86?auto=format&fit=crop&w=350&h=250&q=80" alt="Zomborgs">
+                        <img src="https://via.placeholder.com/350x180" alt="Zomborgs">
                         <h3>Zomborgs</h3>
                         <p>A multiplayer Street Fighter-style game in Unity and C#, with advanced leveling, tournaments, combos, and unique character movesets.</p>
                     </div>
                     <div class="project-card" data-project-id="casino-vr">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80" alt="Casino VR">
+                        <img src="https://via.placeholder.com/350x180" alt="Casino VR">
                         <h3>Casino VR</h3>
                         <p>A VR multiplayer casino game in Unity and C#, featuring Blackjack, Poker, Slots, and EU Roulette with avatar customization and MMO elements.</p>
                     </div>
                 </div>
             </div>
         </section>
-
         <section id="skills" class="skills">
             <h2>SKILLS</h2>
             <div class="container">
                 <div class="skills-grid">
-                    <div class="skill">Unreal Engine</div>
-                    <div class="skill">Unity</div>
-                    <div class="skill">C++</div>
-                    <div class="skill">C#</div>
-                    <div class="skill">AR VR MR</div>
-                    <div class="skill">Multiplayer</div>
-                    <div class="skill">Blueprint</div>
-                    <div class="skill">Three JS</div>
-                    <div class="skill">GIT</div>
-                    <div class="skill">Android IOS</div>
+                    <div class="skill">Unreal Engine<span class="skill-tooltip">Expert in building immersive game worlds with Unreal Engine.</span></div>
+                    <div class="skill">Unity<span class="skill-tooltip">Proficient in creating versatile games using Unity's ecosystem.</span></div>
+                    <div class="skill">C++<span class="skill-tooltip">Advanced programming for performance-critical game systems.</span></div>
+                    <div class="skill">C#<span class="skill-tooltip">Skilled in scripting gameplay mechanics with C# in Unity.</span></div>
+                    <div class="skill">AR VR MR<span class="skill-tooltip">Experienced in developing AR, VR, and MR applications.</span></div>
+                    <div class="skill">Multiplayer<span class="skill-tooltip">Expert in implementing multiplayer systems for games.</span></div>
+                    <div class="skill">Blueprint<span class="skill-tooltip">Proficient in Unreal Engine's visual scripting system.</span></div>
+                    <div class="skill">Three JS<span class="skill-tooltip">Skilled in creating interactive 3D web experiences with Three.js.</span></div>
+                    <div class="skill">GIT<span class="skill-tooltip">Experienced in version control using Git.</span></div>
+                    <div class="skill">Android IOS<span class="skill-tooltip">Proficient in developing mobile apps for Android and iOS.</span></div>
                 </div>
             </div>
         </section>
-
         <section id="contact" class="contact">
             <h2>CONTACT</h2>
             <div class="container">
-                <p id="contact-text" class="contact-text"></p>
+                <div class="contact-text" id="contact-text"></div>
                 <div class="contact-links">
-                    <a href="mailto:[email protected]" class="contact-link">
-                        Email
-                        <span class="contact-tooltip">[email protected]</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/aroyq" class="contact-link" target="_blank" rel="noopener noreferrer">
-                        LinkedIn
-                        <span class="contact-tooltip">https://www.linkedin.com/in/aroyq</span>
-                    </a>
-                    <a href="tel:+91-8276886958" class="contact-link">
-                        Contact No
-                        <span class="contact-tooltip">+91-8276886958</span>
-                    </a>
+                    <a href="mailto:aroyq@outlook.com" class="contact-link">Email<span class="contact-tooltip">aroyq@outlook.com</span></a>
+                    <a href="https://www.linkedin.com/in/aroyq" class="contact-link">LinkedIn<span class="contact-tooltip">https://www.linkedin.com/in/aroyq</span></a>
+                    <a href="tel:+91-8276886958" class="contact-link">Contact No<span class="contact-tooltip">+91-8276886958</span></a>
+                </div>
+            </div>
+        </section>
+        <section class="project-modal" id="project-modal">
+            <div class="modal-content">
+                <span class="modal-close">×</span>
+                <div class="modal-body">
+                    <div class="modal-slider">
+                        <div class="slider-container">
+                            <div class="slider-images" id="slider-images"></div>
+                            <button class="slider-prev" id="slider-prev">←</button>
+                            <button class="slider-next" id="slider-next">→</button>
+                        </div>
+                    </div>
+                    <div class="modal-description">
+                        <h3 id="modal-title"></h3>
+                        <p id="modal-text"></p>
+                    </div>
+                    <div class="modal-links"></div>
+                </div>
+                <div class="modal-scale-controls">
+                    <button id="scale-up">+</button>
+                    <button id="scale-down">−</button>
                 </div>
             </div>
         </section>
     </div>
-
-    <div id="project-modal" class="project-modal">
-        <div class="modal-content">
-            <span class="modal-close">×</span>
-            <div class="modal-body">
-                <div class="modal-description">
-                    <h3 id="modal-title"></h3>
-                    <p id="modal-text"></p>
-                    <div class="modal-links">
-                        <!-- Links will be dynamically populated by JavaScript -->
-                    </div>
-                </div>
-                <div class="modal-slider">
-                    <div class="slider-container">
-                        <div id="slider-images" class="slider-images"></div>
-                    </div>
-                    <button id="slider-prev" class="slider-prev">←</button>
-                    <button id="slider-next" class="slider-next">→</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer>
         <p>© 2025 Abhishek Roy. All rights reserved. | Powered by Passion for Games</p>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
