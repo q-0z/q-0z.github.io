@@ -342,8 +342,9 @@ h2 {
     font-size: 0.9em;
     transition: background 0.3s, transform 0.3s;
     z-index: 2;
-    position: relative;
+    position: bottom;
     width:90%;
+    height: 20%;
     text-align: center;
     
 }
