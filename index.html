@@ -162,29 +162,25 @@
 
     <div id="sound-toggle">🔊</div>
 
-    <div id="project-modal" class="project-modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div class="modal-body">
-                <div class="modal-slider">
-                    <div class="slider-container">
-                        <div id="slider-images" class="slider-images"></div>
-                        <button id="slider-prev" class="slider-prev">←</button>
-                        <button id="slider-next" class="slider-next">→</button>
-                    </div>
-                </div>
-                <div class="modal-description">
-                    <h3 id="modal-title"></h3>
-                    <p id="modal-text"></p>
-                    <div class="modal-links"></div>
+    <!-- Remove the modal-close and scale controls -->
+<div id="project-modal" class="project-modal">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-slider">
+                <div class="slider-container">
+                    <div id="slider-images" class="slider-images"></div>
+                    <button id="slider-prev" class="slider-prev">←</button>
+                    <button id="slider-next" class="slider-next">→</button>
                 </div>
             </div>
-            <div class="modal-scale-controls">
-                <button id="scale-up">+</button>
-                <button id="scale-down">−</button>
+            <div class="modal-description">
+                <h3 id="modal-title"></h3>
+                <p id="modal-text"></p>
+                <div class="modal-links"></div>
             </div>
         </div>
     </div>
+</div>
 
     <script src="script.js"></script>
 </body>

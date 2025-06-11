@@ -12,6 +12,17 @@ body {
     position: relative;
 }
 
+body.modal-active {
+    overflow: hidden;
+}
+
+body.modal-active header,
+body.modal-active .main-content,
+body.modal-active footer {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
 #game-background {
     position: fixed;
     width: 100%;
@@ -517,11 +528,10 @@ footer p {
     position: fixed;
     top: 0;
     left: 0;
-    /* width: 100vw; */
+    width: 100vw;
     height: 100vh;
     min-height: 100vh;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(20px);
     z-index: 2000;
     justify-content: center;
     align-items: center;
@@ -545,23 +555,10 @@ footer p {
     overflow-y: auto;
     margin: auto;
     transition: transform 0.3s ease-in-out;
-}
-
-.modal-close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    color: #FFFFFF;
-    font-size: 1.8em;
-    cursor: pointer;
-    transition: color 0.3s;
-    padding: 10px;
     z-index: 2100;
+    transform: scale(1.5); /* Scale to 1.5 by default */
 }
 
-.modal-close:hover {
-    color: #CCCCCC;
-}
 
 .modal-body {
     display: flex;
@@ -599,10 +596,11 @@ footer p {
 }
 
 .slider-images img {
-    width: 20vw;
-    max-width: 200px;
-    height: 100%;
-    object-fit: cover;
+    width: 30vw;
+    max-width: 300px;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
     flex-shrink: 0;
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     opacity: 0.638;
@@ -611,7 +609,7 @@ footer p {
 }
 
 .slider-images img.active {
-    transform: scale(1.3);
+    transform: scale(1.7);
     opacity: 1;
     z-index: 1;
 }
@@ -731,29 +729,6 @@ footer p {
     animation: fadeIn 0.3s ease-in;
 }
 
-.modal-scale-controls {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    display: flex;
-    gap: 5px;
-}
-
-.modal-scale-controls button {
-    background: rgba(0, 0, 0, 0.6);
-    color: #FFFFFF;
-    border: 1px solid #ffffff79;
-    border-radius: 4px;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-}
-
-.modal-scale-controls button:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -857,11 +832,11 @@ footer p {
     .slider-images img {
         width: 30vw;
         max-width: 150px;
-        transform: scale(0.8);
+        transform: scale(1);
     }
 
     .slider-images img.active {
-        transform: scale(1.2);
+        transform: scale(1);
     }
 
     .slider-prev,

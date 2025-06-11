@@ -329,14 +329,12 @@ document.addEventListener( 'DOMContentLoaded', () =>
 
     // Project Modal Functionality
     const projectModal = document.getElementById( 'project-modal' );
-    const modalClose = document.querySelector( '.modal-close' );
     const modalTitle = document.getElementById( 'modal-title' );
     const modalText = document.getElementById( 'modal-text' );
     const sliderImages = document.getElementById( 'slider-images' );
     const sliderPrev = document.getElementById( 'slider-prev' );
     const sliderNext = document.getElementById( 'slider-next' );
     let currentSlide = 0;
-    let modalScale = 1;
 
     // Project data
     const projectData = {
@@ -372,7 +370,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'JoGo Health',
             description: 'A React Native and Unity app using C# and Java, enabling neuromuscular patients to play games using muscle contractions from Shimmer wearable devices.',
             images: [
-                'https://images.unsplash.com/photo-1576091160396-466c66a9a184?auto=format&fit=crop&w=350&h=250&q=80',
+                'https://images.unsplash.com/photo-1576091160396-466c66a9d9d0?auto=format&fit=crop&w=350&h=250&q=80',
                 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
                 'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
             ],
@@ -586,31 +584,19 @@ document.addEventListener( 'DOMContentLoaded', () =>
                     }
                 } );
 
-                // Reset slider and scale
+                // Reset slider
                 currentSlide = 0;
-                modalScale = 1;
                 updateSlider();
-                updateModalScale();
 
                 // Show modal and lock body
                 projectModal.classList.add( 'active' );
                 document.body.classList.add( 'modal-active' );
-                // Ensure modal content is centered
-                const modalContent = document.querySelector( '.modal-content' );
-                modalContent.style.transform = 'scale(1)';
             }
         } catch ( e )
         {
             console.error( 'Error opening project modal:', e );
         }
     };
-
-    // Function to update modal scale
-    function updateModalScale ()
-    {
-        const modalContent = document.querySelector( '.modal-content' );
-        modalContent.style.transform = `scale(${ modalScale })`;
-    }
 
     // Function to close modal
     const closeModal = () =>
@@ -619,10 +605,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
         {
             projectModal.classList.remove( 'active' );
             document.body.classList.remove( 'modal-active' );
-            // Reset modal scale and transforms
-            modalScale = 1;
-            const modalContent = document.querySelector( '.modal-content' );
-            modalContent.style.transform = 'scale(1)';
             // Restore scroll position
             window.scrollTo( 0, scrollPosition );
         } catch ( e )
@@ -630,6 +612,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
             console.error( 'Error closing project modal:', e );
         }
     };
+
     // Slider navigation
     function updateSlider ()
     {
@@ -653,28 +636,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
         }
     }
 
-    // Scale controls
-    const scaleUp = document.querySelector( '#scale-up' );
-    const scaleDown = document.querySelector( '#scale-down' );
-
-    if ( scaleUp )
-    {
-        scaleUp.addEventListener( 'click', () =>
-        {
-            modalScale = Math.min( 1.5, modalScale + 0.1 );
-            updateModalScale();
-        } );
-    }
-
-    if ( scaleDown )
-    {
-        scaleDown.addEventListener( 'click', () =>
-        {
-            modalScale = Math.max( 0.5, modalScale - 0.1 );
-            updateModalScale();
-        } );
-    }
-
     // Open modal when clicking project card
     projectCards.forEach( card =>
     {
@@ -686,17 +647,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
         } );
     } );
 
-    // Close modal
-    if ( modalClose )
-    {
-        modalClose.addEventListener( 'click', closeModal );
-        modalClose.addEventListener( 'touchend', ( e ) =>
-        {
-            e.preventDefault();
-            closeModal();
-        } );
-    }
-
+    // Close modal when clicking outside
     projectModal.addEventListener( 'click', ( e ) =>
     {
         if ( e.target === projectModal )
@@ -770,4 +721,3 @@ document.addEventListener( 'DOMContentLoaded', () =>
         } );
     }
 } );
-
