@@ -332,7 +332,7 @@ h2 {
 
 .project-card a {
     display: inline-block;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     margin: 12px;
     background: #FFFFFF;
     color: #000000;
@@ -343,6 +343,9 @@ h2 {
     transition: background 0.3s, transform 0.3s;
     z-index: 2;
     position: relative;
+    width:90%;
+    text-align: center;
+    
 }
 
 .project-card a:hover {
