@@ -282,12 +282,11 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Vega Metal Structures',
             description: 'Ecommerce constructing building site built with Three.js, where users can choose and customize buildings to their needs.',
             images: [
-                'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/Vega_1.png',
+                'images/Projects/Vega_2.png'
             ],
             links: {
-                website: 'https://vegametalstructures.com',
+                website: 'https://vegametalstructures.sensei3d.com/',
                 appstore: null,
                 playstore: null
             }

@@ -239,7 +239,7 @@ h2 {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     justify-items: center;
 }
@@ -538,8 +538,9 @@ footer p {
     background: #1A1A1A;
     border: 1px solid #ffffff77;
     border-radius: 12px;
-    width: 80%;
-    max-width: 800px;
+    width: 50%;
+	height: 50%;
+    max-width: 100%;
     position: relative;
     padding: 20px;
     display: flex;
