@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.rotationSpeed = (Math.random() - 0.5) * 0.02;
                     this.type = ['block', 'heart', 'health', 'sword', 'gun'][Math.floor(Math.random() * 5)];
                     this.parallax = Math.random() * 0.5 + 0.5;
-                    // Assign colors based on type
                     this.color = this.type === 'block' ? '#F4E76E' : 
                                  this.type === 'heart' ? '#FF4D4D' : 
                                  this.type === 'health' ? '#4CAF50' : 
@@ -184,23 +183,28 @@ document.addEventListener('DOMContentLoaded', () => {
     let soundEnabled = true;
     const soundToggle = document.getElementById('sound-toggle');
     if (soundToggle) {
-        soundToggle.addEventListener('click', () => {
+        const toggleSound = () => {
             try {
                 soundEnabled = !soundEnabled;
                 soundToggle.textContent = soundEnabled ? '🔊' : '🔇';
             } catch (error) {
                 console.error('Sound toggle error:', error);
             }
+        };
+        soundToggle.addEventListener('click', toggleSound);
+        soundToggle.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            toggleSound();
         });
     }
 
     // Smooth scrolling
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        const smoothScroll = (e) => {
             try {
                 e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
+                const targetId = anchor.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
                     window.scrollTo({
@@ -211,6 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.error('Smooth scroll error:', error);
             }
+        };
+        anchor.addEventListener('click', smoothScroll);
+        anchor.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            smoothScroll(e);
         });
     });
 
@@ -467,69 +476,91 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Open modal when project card is clicked
-    projectCards.forEach(card => {
-        card.addEventListener('click', () => {
-            try {
-                const projectId = card.getAttribute('data-project-id');
-                const project = projectData[projectId];
-                if (project) {
-                    // Populate modal
-                    modalTitle.textContent = project.title;
-                    modalText.textContent = project.description;
+    // Function to open modal
+    const openModal = (card) => {
+        try {
+            const projectId = card.getAttribute('data-project-id');
+            const project = projectData[projectId];
+            if (project) {
+                // Populate modal
+                modalTitle.textContent = project.title;
+                modalText.textContent = project.description;
 
-                    // Populate slider images
-                    sliderImages.innerHTML = '';
-                    project.images.forEach(src => {
-                        const img = document.createElement('img');
-                        img.src = src;
-                        img.alt = `${project.title} screenshot`;
-                        sliderImages.appendChild(img);
-                    });
+                // Populate slider images
+                sliderImages.innerHTML = '';
+                project.images.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = `${project.title} screenshot`;
+                    sliderImages.appendChild(img);
+                });
 
-                    // Populate links
-                    const modalLinks = document.querySelector('.modal-links');
-                    modalLinks.innerHTML = ''; // Clear previous links
-                    const linkTypes = [
-                        { type: 'website', label: 'Visit Website', tooltip: 'Go to the live project site' },
-                        { type: 'appstore', label: 'App Store', tooltip: 'Download on the App Store' },
-                        { type: 'playstore', label: 'Play Store', tooltip: 'Download on Google Play' }
-                    ];
-                    linkTypes.forEach(link => {
-                        if (project.links[link.type]) {
-                            const a = document.createElement('a');
-                            a.href = project.links[link.type];
-                            a.className = `modal-link ${link.type}`;
-                            a.target = '_blank';
-                            a.rel = 'noopener noreferrer';
-                            a.innerHTML = `${link.label}<span class="modal-link-tooltip">${link.tooltip}</span>`;
-                            modalLinks.appendChild(a);
-                        }
-                    });
+                // Populate links
+                const modalLinks = document.querySelector('.modal-links');
+                modalLinks.innerHTML = ''; // Clear previous links
+                const linkTypes = [
+                    { type: 'website', label: 'Visit Website', tooltip: 'Go to the live project site' },
+                    { type: 'appstore', label: 'App Store', tooltip: 'Download on the App Store' },
+                    { type: 'playstore', label: 'Play Store', tooltip: 'Download on Google Play' }
+                ];
+                linkTypes.forEach(link => {
+                    if (project.links[link.type]) {
+                        const a = document.createElement('a');
+                        a.href = project.links[link.type];
+                        a.className = `modal-link ${link.type}`;
+                        a.target = '_blank';
+                        a.rel = 'noopener noreferrer';
+                        a.innerHTML = `${link.label}<span class="modal-link-tooltip">${link.tooltip}</span>`;
+                        modalLinks.appendChild(a);
+                    }
+                });
 
-                    // Reset slider
-                    currentSlide = 0;
-                    updateSlider();
+                // Reset slider
+                currentSlide = 0;
+                updateSlider();
 
-                    // Show modal
-                    projectModal.classList.add('active');
-                }
-            } catch (error) {
-                console.error('Error opening project modal:', error);
+                // Show modal
+                projectModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
             }
+        } catch (error) {
+            console.error('Error opening project modal:', error);
+        }
+    };
+
+    // Open modal when project card is clicked or tapped
+    projectCards.forEach(card => {
+        card.addEventListener('click', () => openModal(card));
+        card.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            openModal(card);
         });
     });
 
+    // Function to close modal
+    const closeModal = () => {
+        projectModal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore background scrolling
+    };
+
     // Close modal
     const modalClose = document.querySelector('.modal-close');
-    modalClose.addEventListener('click', () => {
-        projectModal.classList.remove('active');
+    modalClose.addEventListener('click', closeModal);
+    modalClose.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        closeModal();
     });
 
     // Close modal when clicking outside
     projectModal.addEventListener('click', (e) => {
         if (e.target === projectModal) {
-            projectModal.classList.remove('active');
+            closeModal();
+        }
+    });
+    projectModal.addEventListener('touchend', (e) => {
+        if (e.target === projectModal) {
+            e.preventDefault();
+            closeModal();
         }
     });
 
@@ -543,13 +574,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    sliderNext.addEventListener('click', () => {
+    const nextSlide = () => {
         currentSlide++;
         updateSlider();
-    });
+    };
 
-    sliderPrev.addEventListener('click', () => {
+    const prevSlide = () => {
         currentSlide--;
         updateSlider();
+    };
+
+    sliderNext.addEventListener('click', nextSlide);
+    sliderNext.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        nextSlide();
+    });
+
+    sliderPrev.addEventListener('click', prevSlide);
+    sliderPrev.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        prevSlide();
+    });
+
+    // Swipe support for slider
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    sliderImages.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    sliderImages.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const swipeDistance = touchEndX - touchStartX;
+        if (swipeDistance > 50) {
+            prevSlide(); // Swipe right
+        } else if (swipeDistance < -50) {
+            nextSlide(); // Swipe left
+        }
     });
 });
