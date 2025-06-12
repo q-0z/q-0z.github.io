@@ -348,22 +348,23 @@ document.addEventListener( 'DOMContentLoaded', () =>
             ],
             links: {
                 website: 'https://vegametalstructures.sensei3d.com/',
-                appstore: null,
-                playstore: null
+                // appstore: null,
+                // playstore: null
             }
         },
         'astral-3d-visualizer': {
             title: 'Astral 3D Visualizer',
             description: 'A Unity and Android app using C# and Java to stimulate thought and relaxation through immersive 3D visuals for meditation.',
             images: [
-                'https://images.unsplash.com/photo-1610986603166-fc6b843ce8dd?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/Ast_0.webp',
+                'images/Projects/Ast_1.webp',
+                'images/Projects/Ast_2.webp',
+                'images/Projects/Ast_3.webp',
             ],
             links: {
+                playstore: 'https://play.google.com/store/apps/details?id=astral.teffexf&hl=en_IN',
                 website: null,
                 appstore: null,
-                playstore: 'https://play.google.com/store/apps/details?id=com.astral3dvisualizer'
             }
         },
         'jogo-health': {
@@ -376,62 +377,60 @@ document.addEventListener( 'DOMContentLoaded', () =>
             ],
             links: {
                 website: 'https://jogohealth.com',
-                appstore: 'https://www.apple.com/app-store/jogo-health',
-                playstore: 'https://play.google.com/store/apps/details?id=com.jogohealth'
+                // appstore: 'https://www.apple.com/app-store/jogo-health',
+                // playstore: 'https://play.google.com/store/apps/details?id=com.jogohealth'
             }
         },
         'vizit-app': {
             title: 'VizIT App',
             description: 'A Unity and C# survey app to log and scan market products via serial numbers and barcodes, analyzing data for insights.',
             images: [
-                'https://images.unsplash.com/photo-1556742044-3c52d6e88d0f?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/Vizit_0.webp',
+                'images/Projects/Vizit_1.webp',
+                'images/Projects/Vizit_2.webp',
             ],
             links: {
                 website: null,
-                appstore: 'https://www.apple.com/app-store/vizit-app',
-                playstore: 'https://play.google.com/store/apps/details?id=com.vizitapp'
+                appstore: 'https://apps.apple.com/us/app/nielsen-vizit/id1532264072',
+                playstore: 'https://play.google.com/store/apps/details?id=com.connect.vizitprod'
             }
         },
         'word-mason': {
             title: 'Word Mason',
             description: 'A 2D Tetris-style puzzle game in Unity and C#, where players form words in multiple languages to score points.',
             images: [
-                'https://images.unsplash.com/photo-1598488035139-bdbb2239ce0c?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/WM_0.png',
+                'images/Projects/WM_1.png',
+                'images/Projects/WM_2.png'
             ],
             links: {
-                website: null,
-                appstore: 'https://www.apple.com/app-store/word-mason',
-                playstore: 'https://play.google.com/store/apps/details?id=com.wordmason'
+                website: 'https://images-na.ssl-images-amazon.com/images/I/D1dGrPKK+wS.mp4',
+                appstore: 'https://www.amazon.com/Biswa-Games-Word-Mason/dp/B01DRPHZ02/ref=sr_1_2?dib=eyJ2IjoiMSJ9.H3is2MQrwhn5aURB1yIcIo2pn1FDBcyXvThr52GTgL3GjHj071QN20LucGBJIEps.yUgsBa-dhUcrI93EEjQMgBL0_VCJ3KaWi_xYERShqX8&dib_tag=se&qid=1749701848&refinements=p_4%3ABiswa+Games&s=mobile-apps&search-type=ss&sr=1-2',
+                playstore: 'null'
             }
         },
-        'mind-surfer': {
-            title: 'Mind Surfer',
-            description: 'A 2D endless runner puzzle game in Unity and C#, where players solve puzzles on the run to avoid obstacles.',
+        'mazebomber': {
+            title: 'Maze Bomber',
+            description: 'Your task is to play a fish on a mission to protect your fish-queen at all costs from hungry sharks. This is achieved by completing 50 exciting levels spread across 5 underwater worlds. Clear the level from food to progress, and avoid the sharks. You can deploy underwater mines to fend off the sharks and you can use the Aegis Shield for temporary protection. You can also freeze enemy hearts using thunderbolts.',
             images: [
-                'https://images.unsplash.com/photo-1623922839764-463b0e2b9b86?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/MB_0.jpg',
+                'images/Projects/MB_1.jpg',
+                'images/Projects/MB_2.jpg'
             ],
             links: {
-                website: null,
-                appstore: 'https://www.apple.com/app-store/mind-surfer',
-                playstore: 'https://play.google.com/store/apps/details?id=com.mindsurfer'
+                website: 'https://images-na.ssl-images-amazon.com/images/I/E1K7dINbjGS.mp4',
+                appstore: 'https://www.amazon.com/Biswa-Games-Maze-Bomber/dp/B01MSQBKDQ/ref=sr_1_1?dib=eyJ2IjoiMSJ9.H3is2MQrwhn5aURB1yIcIo2pn1FDBcyXvThr52GTgL3GjHj071QN20LucGBJIEps.yUgsBa-dhUcrI93EEjQMgBL0_VCJ3KaWi_xYERShqX8&dib_tag=se&qid=1749700435&refinements=p_4%3ABiswa+Games&s=mobile-apps&sr=1-1',
+                playstore: 'null'
             }
         },
         'titans-vs-mutants': {
             title: 'Titans vs Mutants',
             description: 'A 3D multiplayer VR fighting game in Unreal Engine 4 and C++ with PvP, featuring mythical gods with hand- and head-tracking ability systems.',
             images: [
-                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/TVM_1.png'
             ],
             links: {
-                website: 'https://titansvsmutants.com',
+                website: null,
                 appstore: null,
                 playstore: null
             }
@@ -440,27 +439,28 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: "Let's Go See",
             description: 'Let\'s Go See is an entertaining, educational and inspirational brand, designed to bring learning to life through fun, adventure, and discovery!',
             images: [
-                'https://images.unsplash.com/photo-1599447332257-49e96e1582ac?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/lgs_0.webp',
+                'images/Projects/lgs_1.webp',
+                'images/Projects/lgs_2.webp',
             ],
             links: {
-                website: 'https://letsgosee.com',
-                appstore: null,
+                website: 'https://letsgosee.world/',
+                appstore: 'https://apps.apple.com/gb/app/lets-go-see-kids-ar-game/id1536127623',
                 playstore: null
             }
         },
         'rotate3d': {
             title: 'Rotate3d',
-            description: 'A 3D rhythmic endless runner in Unreal Engine 4 and C++, where players dodge obstacles synchronized with music beats.',
+            description: 'Rotate 3D is a unique VR Rhythm Game to avoid the obstacles which are riding on the beat.Collect gems to unlock new powers.\
+            Rotate through the tunnels to enjoy a unique environment.Do not forget to pick up your powers of Health & Shield.It gives you an extra bit of support that you need.',
             images: [
-                'https://images.unsplash.com/photo-1614014969551-92e8b998d7f2?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/r3d_1.jpg',
+                'images/Projects/r3d_2.jpg',
+                'images/Projects/r3d_3.jpg'
             ],
             links: {
                 website: null,
-                appstore: null,
+                appstore: 'https://www.meta.com/en-gb/experiences/pcvr/rotate-3d/3505572796210615/',
                 playstore: null
             }
         },
@@ -468,9 +468,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'Boomheads',
             description: 'A Bomberman-style deathmatch game in Unreal Engine 5 and C++ with multiplayer, featuring coin collection and player elimination.',
             images: [
-                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
             ],
             links: {
                 website: null,
@@ -482,37 +479,45 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'Mobile Star Dancing',
             description: 'A multiplayer MMORPG in Unreal Engine 5 and C++, with character customization, dance events, and social interactions like marriage.',
             images: [
-                'https://images.unsplash.com/photo-1599949849315-4b2c2316560f?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/mstar_1.png',
+                'images/Projects/mstar_3.jpg',
+                'images/Projects/mstar_4.jpg',
+                'images/Projects/mstar_5.jpg',
+                'images/Projects/mstar_6.jpg',
+                'images/Projects/mstar_7.jpg',
             ],
             links: {
                 website: null,
                 appstore: null,
-                playstore: 'https://play.google.com/store/apps/details?id=com.mobilestardancing'
+                playstore: null
             }
         },
-        'frog-jumper': {
-            title: 'Frog Jumper',
-            description: 'A 3D platformer in Unreal Engine 5 and C++, similar to Flappy Bird, with realistic graphics, enemy AI, and leaderboards.',
+        'firesky': {
+            title: 'Fire Sky',
+            description: 'FIRESKY is a multiplayer action RPG with strategic PVP and card collection elements.\
+            The game follows a cast of heroes who overcome tremendous odds to fight a great evil spreading throughout the universe.',
             images: [
-                'https://images.unsplash.com/photo-1598488035139-bdbb2239ce0c?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/fs_1.jpg',
+                'images/Projects/fs_2.jpg',
+                'images/Projects/fs_3.jpg',
+                'images/Projects/fs_4.jpg',
             ],
             links: {
-                website: null,
-                appstore: 'https://www.apple.com/app-store/frog-jumper',
-                playstore: 'https://play.google.com/store/apps/details?id=com.frogjumper'
+                website: 'https://store.steampowered.com/app/2859900/FIRESKY/',
+                appstore: null,
+                playstore: 'https://play.google.com/store/apps/details?id=com.concepthaus.ds'
             }
         },
         'zomborgs': {
             title: 'Zomborgs',
             description: 'A multiplayer Street Fighter-style game in Unity and C#, with advanced leveling, tournaments, combos, and unique character movesets.',
             images: [
-                'https://images.unsplash.com/photo-1623922839764-463b0e2b9b86?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/zb_1.jpg',
+                'images/Projects/zb_2.jpg',
+                'images/Projects/zb_3.jpg',
+                'images/Projects/zb_5.jpg',
+                'images/Projects/zb_7.jpg',
+                'images/Projects/zb_6.jpg',
             ],
             links: {
                 website: null,
@@ -524,9 +529,9 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'Casino VR',
             description: 'A VR multiplayer casino game in Unity and C#, featuring Blackjack, Poker, Slots, and EU Roulette with avatar customization and MMO elements.',
             images: [
-                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
+                'images/Projects/casvr_1.jpg',
+                'images/Projects/casvr_2.jpg',
+                'images/Projects/casvr_3.jpg'
             ],
             links: {
                 website: 'https://casinovr.com',
