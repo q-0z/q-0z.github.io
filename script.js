@@ -356,10 +356,10 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'Astral 3D Visualizer',
             description: 'A Unity and Android app using C# and Java to stimulate thought and relaxation through immersive 3D visuals for meditation.',
             images: [
-                'images/Projects/Ast_0.webp',
-                'images/Projects/Ast_1.webp',
-                'images/Projects/Ast_2.webp',
-                'images/Projects/Ast_3.webp',
+                'images/Projects/Ast_0.png',
+                'images/Projects/Ast_1.png',
+                'images/Projects/Ast_2.png',
+                'images/Projects/Ast_3.png',
             ],
             links: {
                 playstore: 'https://play.google.com/store/apps/details?id=astral.teffexf&hl=en_IN',
@@ -385,9 +385,9 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'VizIT App',
             description: 'A Unity and C# survey app to log and scan market products via serial numbers and barcodes, analyzing data for insights.',
             images: [
-                'images/Projects/Vizit_0.webp',
-                'images/Projects/Vizit_1.webp',
-                'images/Projects/Vizit_2.webp',
+                'images/Projects/Vizit_0.png',
+                'images/Projects/Vizit_1.png',
+                'images/Projects/Vizit_2.png',
             ],
             links: {
                 website: null,
@@ -439,9 +439,9 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: "Let's Go See",
             description: 'Let\'s Go See is an entertaining, educational and inspirational brand, designed to bring learning to life through fun, adventure, and discovery!',
             images: [
-                'images/Projects/lgs_0.webp',
-                'images/Projects/lgs_1.webp',
-                'images/Projects/lgs_2.webp',
+                'images/Projects/lgs_0.png',
+                'images/Projects/lgs_1.png',
+                'images/Projects/lgs_2.png',
             ],
             links: {
                 website: 'https://letsgosee.world/',
