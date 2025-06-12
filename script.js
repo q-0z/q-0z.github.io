@@ -348,8 +348,8 @@ document.addEventListener( 'DOMContentLoaded', () =>
             ],
             links: {
                 website: 'https://vegametalstructures.sensei3d.com/',
-                // appstore: null,
-                // playstore: null
+                 appstore: null,
+                 playstore: null
             }
         },
         'astral-3d-visualizer': {
@@ -371,14 +371,11 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'JoGo Health',
             description: 'A React Native and Unity app using C# and Java, enabling neuromuscular patients to play games using muscle contractions from Shimmer wearable devices.',
             images: [
-                'https://images.unsplash.com/photo-1576091160396-466c66a9d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=350&h=250&q=80',
-                'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
             ],
             links: {
                 website: 'https://jogohealth.com',
-                // appstore: 'https://www.apple.com/app-store/jogo-health',
-                // playstore: 'https://play.google.com/store/apps/details?id=com.jogohealth'
+                 appstore: null,
+                 playstore: null
             }
         },
         'vizit-app': {
@@ -406,7 +403,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
             links: {
                 website: 'https://images-na.ssl-images-amazon.com/images/I/D1dGrPKK+wS.mp4',
                 appstore: 'https://www.amazon.com/Biswa-Games-Word-Mason/dp/B01DRPHZ02/ref=sr_1_2?dib=eyJ2IjoiMSJ9.H3is2MQrwhn5aURB1yIcIo2pn1FDBcyXvThr52GTgL3GjHj071QN20LucGBJIEps.yUgsBa-dhUcrI93EEjQMgBL0_VCJ3KaWi_xYERShqX8&dib_tag=se&qid=1749701848&refinements=p_4%3ABiswa+Games&s=mobile-apps&search-type=ss&sr=1-2',
-                playstore: 'null'
+                playstore: null
             }
         },
         'mazebomber': {
@@ -420,7 +417,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
             links: {
                 website: 'https://images-na.ssl-images-amazon.com/images/I/E1K7dINbjGS.mp4',
                 appstore: 'https://www.amazon.com/Biswa-Games-Maze-Bomber/dp/B01MSQBKDQ/ref=sr_1_1?dib=eyJ2IjoiMSJ9.H3is2MQrwhn5aURB1yIcIo2pn1FDBcyXvThr52GTgL3GjHj071QN20LucGBJIEps.yUgsBa-dhUcrI93EEjQMgBL0_VCJ3KaWi_xYERShqX8&dib_tag=se&qid=1749700435&refinements=p_4%3ABiswa+Games&s=mobile-apps&sr=1-1',
-                playstore: 'null'
+                playstore: null
             }
         },
         'titans-vs-mutants': {
@@ -534,7 +531,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/casvr_3.jpg'
             ],
             links: {
-                website: 'https://casinovr.com',
+                website: null,
                 appstore: null,
                 playstore: null
             }
