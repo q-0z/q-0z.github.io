@@ -537,6 +537,34 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 appstore: null,
                 playstore: null
             }
+        },
+        'Hololense': {
+            title: 'Hololense Apps',
+            description: 'Interactive hololense showcases for medical and archviz projects',
+            images: [
+                'images/Projects/casvr_1.jpg',
+                'images/Projects/casvr_2.jpg',
+                'images/Projects/casvr_3.jpg'
+            ],
+            links: {
+                website: null,
+                appstore: null,
+                playstore: null
+            }
+        },
+        'charisma': {
+            title: 'CHARISMA VR',
+            description: 'Series of game to simulation like claw machine, music game, interactive dart game',
+            images: [
+                'images/Projects/CH_0.png',
+                'images/Projects/CH_1.png',
+                'images/Projects/CH_2.png'
+            ],
+            links: {
+                website: null,
+                appstore: null,
+                playstore: null
+            }
         }
     };
 
