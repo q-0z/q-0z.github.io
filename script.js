@@ -15,7 +15,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 {
                     aboutTextElement.innerHTML = aboutText.substring( 0, i + 1 ) + '<span style="color: #E9ECEF; animation: blink 0.5s infinite;">|</span>';
                     i++;
-                    setTimeout( typeWriterAbout, 50 );
+                    setTimeout( typeWriterAbout, 1 );
                 } else
                 {
                     aboutTextElement.innerHTML = aboutText;
@@ -43,7 +43,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 {
                     contactTextElement.innerHTML = contactText.substring( 0, j + 1 ) + '<span style="color: #264653; animation: blink 0.5s infinite;">|</span>';
                     j++;
-                    setTimeout( typeWriterContact, 50 );
+                    setTimeout( typeWriterContact, 1 );
                 } else
                 {
                     contactTextElement.innerHTML = contactText;
@@ -356,10 +356,10 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'Astral 3D Visualizer',
             description: 'A Unity and Android app using C# and Java to stimulate thought and relaxation through immersive 3D visuals for meditation.',
             images: [
-                'images/Projects/Ast_0.png',
-                'images/Projects/Ast_1.png',
-                'images/Projects/Ast_2.png',
-                'images/Projects/Ast_3.png',
+                'images/Projects/AST_0.png',
+                'images/Projects/AST_1.png',
+                'images/Projects/AST_2.png',
+                'images/Projects/AST_3.png',
             ],
             links: {
                 playstore: 'https://play.google.com/store/apps/details?id=astral.teffexf&hl=en_IN',
@@ -476,12 +476,12 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'Mobile Star Dancing',
             description: 'A multiplayer MMORPG in Unreal Engine 5 and C++, with character customization, dance events, and social interactions like marriage.',
             images: [
-                'images/Projects/mstar_1.png',
-                'images/Projects/mstar_3.jpg',
-                'images/Projects/mstar_4.jpg',
-                'images/Projects/mstar_5.jpg',
-                'images/Projects/mstar_6.jpg',
-                'images/Projects/mstar_7.jpg',
+                'images/Projects/Mstar_1.png',
+                'images/Projects/Mstar_3.jpg',
+                'images/Projects/Mstar_4.jpg',
+                'images/Projects/Mstar_5.jpg',
+                'images/Projects/Mstar_6.jpg',
+                'images/Projects/Mstar_7.jpg',
             ],
             links: {
                 website: null,
