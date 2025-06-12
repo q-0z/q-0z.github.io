@@ -477,11 +477,11 @@ document.addEventListener( 'DOMContentLoaded', () =>
             description: 'A multiplayer MMORPG in Unreal Engine 5 and C++, with character customization, dance events, and social interactions like marriage.',
             images: [
                 'images/Projects/MStar_1.png',
-                'images/Projects/MStar_3.jpg',
-                'images/Projects/MStar_4.jpg',
-                'images/Projects/MStar_5.jpg',
-                'images/Projects/MStar_6.jpg',
-                'images/Projects/MStar_7.jpg',
+                'images/Projects/Mstar_3.jpg',
+                'images/Projects/Mstar_4.jpg',
+                'images/Projects/Mstar_5.jpg',
+                'images/Projects/Mstar_6.jpg',
+                'images/Projects/Mstar_7.jpg',
             ],
             links: {
                 website: null,
