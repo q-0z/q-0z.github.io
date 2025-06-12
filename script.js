@@ -465,6 +465,8 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'Boomheads',
             description: 'A Bomberman-style deathmatch game in Unreal Engine 5 and C++ with multiplayer, featuring coin collection and player elimination.',
             images: [
+                'images/Projects/BH_0.png',
+                'images/Projects/BH_2.png',
             ],
             links: {
                 website: null,
@@ -476,12 +478,12 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'Mobile Star Dancing',
             description: 'A multiplayer MMORPG in Unreal Engine 5 and C++, with character customization, dance events, and social interactions like marriage.',
             images: [
-                'images/Projects/MStar_1.png',
-                'images/Projects/Mstar_3.jpg',
-                'images/Projects/Mstar_4.jpg',
-                'images/Projects/Mstar_5.jpg',
-                'images/Projects/Mstar_6.jpg',
-                'images/Projects/Mstar_7.jpg',
+                'images/Projects/MS_1.png',
+                'images/Projects/MS_3.jpg',
+                'images/Projects/MS_4.jpg',
+                'images/Projects/MS_5.jpg',
+                'images/Projects/MS_6.jpg',
+                'images/Projects/MS_7.jpg',
             ],
             links: {
                 website: null,
