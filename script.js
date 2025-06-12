@@ -1,5 +1,11 @@
 document.addEventListener( 'DOMContentLoaded', () =>
 {
+    document.addEventListener('click', () => {
+    if (soundEnabled) {
+        myAudio.currentTime = 0; // rewind to start
+        myAudio.play();
+    }
+    });
     let scrollPosition = 0;
     // Typewriter effect for About section
     const aboutText = "An enthusiast self-motivated programmer with 6+ years of extensive experience in game programming and a great understanding of games. Has deep technical knowledge of Unity, Unreal Engine, Game programming and software development. Capable of writing bug-free optimized code for PC and mobile platforms.";
@@ -216,6 +222,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
     // Sound toggle
     let soundEnabled = true;
     const soundToggle = document.getElementById( 'sound-toggle' );
+    const myAudio = document.getElementById('my-audio');
     if ( soundToggle )
     {
         const toggleSound = () =>
@@ -224,6 +231,12 @@ document.addEventListener( 'DOMContentLoaded', () =>
             {
                 soundEnabled = !soundEnabled;
                 soundToggle.textContent = soundEnabled ? '🔊' : '🔇';
+                if (soundEnabled) {
+                    myAudio.play();
+                } else {
+                    myAudio.pause();
+                    myAudio.currentTime = 0; // Optional: reset to start
+                }
             } catch ( error )
             {
                 console.error( 'Sound toggle error:', error );
@@ -235,6 +248,10 @@ document.addEventListener( 'DOMContentLoaded', () =>
             e.preventDefault();
             toggleSound();
         } );
+
+        // if (soundEnabled) {
+        //     myAudio.play();
+        // }
     }
 
     // Smooth scrolling
