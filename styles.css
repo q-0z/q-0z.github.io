@@ -6,9 +6,10 @@
 }
 
 body {
-    background: #eff8fa;
+    /* background: #eff8fa; */
     /* background: #1b1b1b; */
-    color: #FFFFFF;
+    background:#1f1f1f;
+    color: #000000;
     overflow-x: hidden;
     position: relative;
 }
@@ -31,67 +32,69 @@ body.modal-active footer {
     z-index: -1;
     opacity: 0.85;
 }
-
+/* //////////////////////////////////////////////////////////////////////// */
 header {
-    background: rgba(114, 110, 110, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 15px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    /* border-bottom: 1px solid #FFFFFF; */
-    transition: transform 0.3s ease;
+  background: #141414a6;    /* darker, subtle transparency */
+  backdrop-filter: blur(12px);          
+  padding: 12px 24px;                   /* slightly larger padding */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 header.scrolled {
-    transform: translateY(-10px);
+  transform: translateY(-8px);
+  background: #1f1f1f;   /* a bit more opaque on scroll */
 }
 
 header h1 {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 1.8em;
-    color: #FFFFFF;
-    text-align: center;
-    letter-spacing: 2px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1.6em;
+  color: #f1f1f1;
+  text-align: left;                     /* align left for that pro touch */
+  letter-spacing: 1px;
+  margin: 0;
+  display: inline-block;
 }
 
 nav {
-    text-align: center;
-    margin-top: 10px;
+  display: inline-block;
+  float: right;
+  margin-top: 4px;
 }
 
 nav a {
-    color: #FFFFFF;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 1em;
-    transition: color 0.3s, transform 0.3s;
-    position: relative;
+  color: #ddd;
+  text-decoration: none;
+  margin: 0 14px;
+  font-size: 0.95em;
+  position: relative;
+  transition: color 0.3s, transform 0.2s;
 }
 
 nav a:hover {
-    color: #FFFFFF;
-    transform: scale(1.1);
-    text-shadow: 0 0 8px #FFFFFF;
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: #FFFFFF;
-    bottom: -5px;
-    left: 0;
-    transition: width 0.3s;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  bottom: -4px;
+  left: 0;
+  transition: width 0.3s;
 }
 
 nav a:hover::after {
-    width: 100%;
+  width: 100%;
 }
 
+/* /////////////////////////////////////////////////////////////////////////////////// */
 .main-content {
     width: 75%;
     margin: 0 auto;
@@ -115,7 +118,7 @@ h2 {
     text-align: center;
     font-size: 2.5em;
     margin-bottom: 40px;
-    color: #FFFFFF;
+    color: #ffffff;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
     animation: glitch 2s infinite;
 }
@@ -176,7 +179,7 @@ h2 {
 .about-profile h3 {
     font-family: 'Exo 2', sans-serif;
     font-size: 1.1em;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .stat-container {
@@ -213,7 +216,7 @@ h2 {
 
 .stat-label {
     font-size: 0.8em;
-    color: #FFFFFF;
+    color: #ffffff;
     position: absolute;
     left: 8px;
     top: -20px;
@@ -243,7 +246,7 @@ h2 {
 .about-text {
     font-size: 1em;
     line-height: 1.8;
-    color: #FFFFFF;
+    color: #ffffff;
     max-width: 100%;
     overflow: auto;
     height: auto;
@@ -451,7 +454,7 @@ h2 {
 .contact-text {
     font-size: 1.1em;
     line-height: 1.6;
-    color: #FFFFFF;
+    color: #ffffff;
     max-width: 700px;
     margin: 0 auto 30px;
     position: relative;
@@ -471,7 +474,7 @@ h2 {
 .contact-link {
     display: inline-block;
     padding: 12px 24px;
-    background: #1a1a1a;
+    background: #363636;
     color: #e0e0e0;
     font-family: 'Exo 2', sans-serif;
     font-size: 0.85em;
