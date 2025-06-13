@@ -498,7 +498,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/MS_1.png',
                 'images/Projects/MS_3.jpg',
                 'images/Projects/MS_4.jpg',
-                'images/Projects/MS_5.jpg',
+                'images/Projects/MS_8.jpg',
                 'images/Projects/MS_6.jpg',
                 'images/Projects/MS_7.jpg',
             ],
