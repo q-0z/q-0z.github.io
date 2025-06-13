@@ -98,11 +98,7 @@ nav a:hover::after {
     padding: 20px;
     position: relative;
     z-index: 1;
-<<<<<<< Updated upstream
-    background: linear-gradient(135deg, rgba(39, 59, 61, 0.5), rgba(8, 53, 112, 0.5) 50%, rgba(77, 3, 83, 0.411));
-=======
     /* background: linear-gradient(135deg, rgba(3, 63, 68, 0.85), rgba(11, 39, 77, 0.85) 50%, rgba(41, 24, 43, 0.85)); */
->>>>>>> Stashed changes
     backdrop-filter: blur(8px);
     margin-top: 100px;
 }

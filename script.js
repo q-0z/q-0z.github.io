@@ -529,9 +529,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
             ],
             links: {
-<<<<<<< Updated upstream
-                website: 'https://casinovr.com',
-=======
                 website: null,
                 appstore: null,
                 playstore: null
@@ -562,7 +559,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
             ],
             links: {
                 website: null,
->>>>>>> Stashed changes
                 appstore: null,
                 playstore: null
             }
