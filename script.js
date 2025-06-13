@@ -559,9 +559,10 @@ document.addEventListener( 'DOMContentLoaded', () =>
             title: 'Hololense Apps',
             description: 'Interactive hololense showcases for medical and archviz projects',
             images: [
-                'images/Projects/casvr_1.jpg',
-                'images/Projects/casvr_2.jpg',
-                'images/Projects/casvr_3.jpg'
+                'images/Projects/MR_2.png',
+                'images/Projects/MR_3.png',
+                'images/Projects/MR_4.png',
+                'images/Projects/MR_5.png',
             ],
             links: {
                 website: null,
