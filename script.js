@@ -30,7 +30,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
     }
 
     // Typewriter effect for Contact section
-    const contactText = "Here are my contact links. Feel free to reach out to me";
+    const contactText = "";
     let j = 0;
     const contactTextElement = document.getElementById( 'contact-text' );
     if ( contactTextElement )
@@ -529,7 +529,40 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'https://images.unsplash.com/photo-1486406146923-c146a9d6c5d5?auto=format&fit=crop&w=350&h=250&q=80'
             ],
             links: {
+<<<<<<< Updated upstream
                 website: 'https://casinovr.com',
+=======
+                website: null,
+                appstore: null,
+                playstore: null
+            }
+        },
+        'Hololense': {
+            title: 'Hololense Apps',
+            description: 'Interactive hololense showcases for medical and archviz projects',
+            images: [
+                'images/Projects/MR_2.jpg',
+                'images/Projects/MR_3.png',
+                'images/Projects/MR_4.png',
+                'images/Projects/MR_5.png',
+            ],
+            links: {
+                website: null,
+                appstore: null,
+                playstore: null
+            }
+        },
+        'charisma': {
+            title: 'CHARISMA VR',
+            description: 'Series of game to simulation like claw machine, music game, interactive dart game',
+            images: [
+                'images/Projects/CH_0.png',
+                'images/Projects/CH_1.png',
+                'images/Projects/CH_2.png'
+            ],
+            links: {
+                website: null,
+>>>>>>> Stashed changes
                 appstore: null,
                 playstore: null
             }
