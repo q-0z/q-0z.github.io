@@ -62,162 +62,156 @@ document.addEventListener( 'DOMContentLoaded', () =>
         }
         typeWriterContact();
     }
-
+    
     // Game-themed background animation
-    const canvas = document.getElementById( 'game-background' );
-    if ( canvas )
-    {
-        const ctx = canvas.getContext( '2d' );
-        if ( ctx )
-        {
-            // Set canvas size
-            function resizeCanvas ()
-            {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            window.addEventListener( 'resize', resizeCanvas );
-            resizeCanvas();
+const canvas = document.getElementById('game-background');
+const ctx = canvas.getContext('2d');
 
-            // Game element class
-            class GameElement
-            {
-                constructor ()
-                {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 20 + 10;
-                    this.speedX = ( Math.random() - 0.5 ) * 1.5;
-                    this.speedY = ( Math.random() - 0.5 ) * 1.5;
-                    this.opacity = Math.random() * 0.5 + 0.5;
-                    this.rotation = Math.random() * Math.PI * 2;
-                    this.rotationSpeed = ( Math.random() - 0.5 ) * 0.02;
-                    this.type = [ 'block', 'heart', 'health', 'sword', 'gun' ][ Math.floor( Math.random() * 5 ) ];
-                    this.parallax = Math.random() * 0.5 + 0.5;
-                    this.color = this.type === 'block' ? '#F4E76E' :
-                        this.type === 'heart' ? '#FF4D4D' :
-                            this.type === 'health' ? '#4CAF50' :
-                                this.type === 'sword' ? '#B0C4DE' :
-                                    '#A9A9A9';
-                    this.innerColor = this.type === 'block' ? '#264653' : this.color;
-                }
+let mouse = { x: 0, y: 0 };
 
-                draw ()
-                {
-                    ctx.save();
-                    ctx.globalAlpha = this.opacity;
-                    ctx.translate( this.x, this.y );
-                    ctx.rotate( this.rotation );
-                    ctx.fillStyle = this.color;
-                    try
-                    {
-                        if ( this.type === 'block' )
-                        {
-                            ctx.fillRect( -this.size / 2, -this.size / 2, this.size * 0.8, this.size * 0.8 );
-                            ctx.fillStyle = this.innerColor;
-                            ctx.fillRect( -this.size / 4, -this.size / 4, this.size / 2, this.size / 2 );
-                        } else if ( this.type === 'heart' )
-                        {
-                            ctx.beginPath();
-                            ctx.moveTo( 0, this.size / 4 );
-                            ctx.bezierCurveTo( -this.size / 2, -this.size / 2, -this.size, this.size / 4, 0, this.size );
-                            ctx.bezierCurveTo( this.size, this.size / 4, this.size / 2, -this.size / 2, 0, this.size / 4 );
-                            ctx.closePath();
-                            ctx.fill();
-                        } else if ( this.type === 'health' )
-                        {
-                            ctx.beginPath();
-                            ctx.fillRect( -this.size / 4, -this.size / 2, this.size / 2, this.size );
-                            ctx.fillRect( -this.size / 2, -this.size / 4, this.size, this.size / 2 );
-                            ctx.closePath();
-                            ctx.fill();
-                        } else if ( this.type === 'sword' )
-                        {
-                            ctx.beginPath();
-                            ctx.moveTo( 0, -this.size / 2 );
-                            ctx.lineTo( -this.size / 8, this.size / 4 );
-                            ctx.lineTo( -this.size / 3, this.size / 4 );
-                            ctx.lineTo( -this.size / 4, this.size / 2 );
-                            ctx.lineTo( this.size / 4, this.size / 2 );
-                            ctx.lineTo( this.size / 3, this.size / 4 );
-                            ctx.lineTo( this.size / 8, this.size / 4 );
-                            ctx.lineTo( 0, -this.size / 2 );
-                            ctx.closePath();
-                            ctx.fill();
-                        } else if ( this.type === 'gun' )
-                        {
-                            ctx.beginPath();
-                            ctx.fillRect( -this.size / 2, -this.size / 8, this.size / 2, this.size / 4 );
-                            ctx.moveTo( 0, -this.size / 8 );
-                            ctx.lineTo( this.size / 8, this.size / 2 );
-                            ctx.lineTo( -this.size / 8, this.size / 2 );
-                            ctx.lineTo( 0, -this.size / 8 );
-                            ctx.closePath();
-                            ctx.fill();
-                        }
-                    } catch ( error )
-                    {
-                        console.error( 'Draw error for', this.type, ':', error );
-                    }
-                    ctx.restore();
-                }
+window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+});
 
-                update ( scrollY )
-                {
-                    try
-                    {
-                        this.x += this.speedX * this.parallax;
-                        this.y += this.speedY - scrollY * 0.05 * this.parallax;
-                        this.rotation += this.rotationSpeed;
+window.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const newElement = new GameElement();
+    newElement.x = e.clientX - rect.left;
+    newElement.y = e.clientY - rect.top;
+    elements.push(newElement);
+});
 
-                        // Boundary checks
-                        if ( this.x < -this.size ) this.x += canvas.width + this.size * 2;
-                        if ( this.x > canvas.width + this.size ) this.x -= canvas.width + this.size * 2;
-                        if ( this.y < -this.size ) this.y += canvas.height + this.size * 2;
-                        if ( this.y > canvas.height + this.size ) this.y -= canvas.height + this.size * 2;
-                    } catch ( error )
-                    {
-                        console.error( 'Update error:', error );
-                    }
-                }
-            }
+// Resize canvas
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 
-            // Create elements
-            const elements = [];
-            for ( let i = 0; i < 150; i++ )
-            {
-                elements.push( new GameElement() );
-            }
-
-            // Animation loop
-            let lastScrollY = window.scrollY;
-            function animate ()
-            {
-                try
-                {
-                    ctx.clearRect( 0, 0, canvas.width, canvas.height );
-                    const scrollY = window.scrollY - lastScrollY;
-                    elements.forEach( element =>
-                    {
-                        element.update( scrollY );
-                        element.draw();
-                    } );
-                    lastScrollY = window.scrollY;
-                    requestAnimationFrame( animate );
-                } catch ( error )
-                {
-                    console.error( 'Animation loop error:', error );
-                }
-            }
-            animate();
-        } else
-        {
-            console.error( 'Canvas context not available' );
-        }
-    } else
-    {
-        console.error( 'Canvas element not found' );
+// Game element class
+class GameElement {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 20 + 10;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+        this.opacity = Math.random() * 0.5 + 0.5;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+        this.type = ['block', 'heart', 'health', 'sword', 'gun'][Math.floor(Math.random() * 5)];
+        this.parallax = Math.random() * 0.5 + 0.5;
+        this.color = this.type === 'block' ? '#F4E76E' :
+                     this.type === 'heart' ? '#FF4D4D' :
+                     this.type === 'health' ? '#4CAF50' :
+                     this.type === 'sword' ? '#B0C4DE' :
+                     '#A9A9A9';
+        this.innerColor = this.type === 'block' ? '#264653' : this.color;
     }
+
+    draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const nearMouse = dist < 100;
+        const effectiveSize = nearMouse ? this.size * 1.4 : this.size;
+
+        ctx.fillStyle = this.color;
+
+        try {
+            if (this.type === 'block') {
+                ctx.fillRect(-effectiveSize / 2, -effectiveSize / 2, effectiveSize * 0.8, effectiveSize * 0.8);
+                ctx.fillStyle = this.innerColor;
+                ctx.fillRect(-effectiveSize / 4, -effectiveSize / 4, effectiveSize / 2, effectiveSize / 2);
+            } else if (this.type === 'heart') {
+                ctx.beginPath();
+                ctx.moveTo(0, effectiveSize / 4);
+                ctx.bezierCurveTo(-effectiveSize / 2, -effectiveSize / 2, -effectiveSize, effectiveSize / 4, 0, effectiveSize);
+                ctx.bezierCurveTo(effectiveSize, effectiveSize / 4, effectiveSize / 2, -effectiveSize / 2, 0, effectiveSize / 4);
+                ctx.closePath();
+                ctx.fill();
+            } else if (this.type === 'health') {
+                ctx.beginPath();
+                ctx.fillRect(-effectiveSize / 4, -effectiveSize / 2, effectiveSize / 2, effectiveSize);
+                ctx.fillRect(-effectiveSize / 2, -effectiveSize / 4, effectiveSize, effectiveSize / 2);
+                ctx.closePath();
+                ctx.fill();
+            } else if (this.type === 'sword') {
+                ctx.beginPath();
+                ctx.moveTo(0, -effectiveSize / 2);
+                ctx.lineTo(-effectiveSize / 8, effectiveSize / 4);
+                ctx.lineTo(-effectiveSize / 3, effectiveSize / 4);
+                ctx.lineTo(-effectiveSize / 4, effectiveSize / 2);
+                ctx.lineTo(effectiveSize / 4, effectiveSize / 2);
+                ctx.lineTo(effectiveSize / 3, effectiveSize / 4);
+                ctx.lineTo(effectiveSize / 8, effectiveSize / 4);
+                ctx.lineTo(0, -effectiveSize / 2);
+                ctx.closePath();
+                ctx.fill();
+            } else if (this.type === 'gun') {
+                ctx.beginPath();
+                ctx.fillRect(-effectiveSize / 2, -effectiveSize / 8, effectiveSize / 2, effectiveSize / 4);
+                ctx.moveTo(0, -effectiveSize / 8);
+                ctx.lineTo(effectiveSize / 8, effectiveSize / 2);
+                ctx.lineTo(-effectiveSize / 8, effectiveSize / 2);
+                ctx.lineTo(0, -effectiveSize / 8);
+                ctx.closePath();
+                ctx.fill();
+            }
+        } catch (error) {
+            console.error('Draw error for', this.type, ':', error);
+        }
+
+        ctx.restore();
+    }
+
+    update(scrollY) {
+        try {
+            this.x += this.speedX * this.parallax;
+            this.y += this.speedY - scrollY * 0.05 * this.parallax;
+            this.rotation += this.rotationSpeed;
+
+            if (this.x < -this.size) this.x += canvas.width + this.size * 2;
+            if (this.x > canvas.width + this.size) this.x -= canvas.width + this.size * 2;
+            if (this.y < -this.size) this.y += canvas.height + this.size * 2;
+            if (this.y > canvas.height + this.size) this.y -= canvas.height + this.size * 2;
+        } catch (error) {
+            console.error('Update error:', error);
+        }
+    }
+}
+
+// Create elements
+const elements = [];
+for (let i = 0; i < 150; i++) {
+    elements.push(new GameElement());
+}
+
+// Animate
+let lastScrollY = window.scrollY;
+function animate() {
+    try {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const scrollY = window.scrollY - lastScrollY;
+        elements.forEach(element => {
+            element.update(scrollY);
+            element.draw();
+        });
+        lastScrollY = window.scrollY;
+        requestAnimationFrame(animate);
+    } catch (error) {
+        console.error('Animation loop error:', error);
+    }
+}
+animate();
 
     // Sound toggle
     let soundEnabled = true;
