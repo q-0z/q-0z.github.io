@@ -6,7 +6,8 @@
 }
 
 body {
-    background: #1b1b1b;
+    background: #eff8fa;
+    /* background: #1b1b1b; */
     color: #FFFFFF;
     overflow-x: hidden;
     position: relative;
@@ -32,7 +33,7 @@ body.modal-active footer {
 }
 
 header {
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(114, 110, 110, 0.95);
     backdrop-filter: blur(10px);
     padding: 15px;
     position: fixed;
@@ -377,29 +378,28 @@ h2 {
 }
 
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 15px;
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .skill {
-    background: #000000;
-    padding: 12px;
-    border: 2px solid #ffffff75;
-    border-radius: 6px;
-    width: 80px;
-    height: 80px;
-    display: flex;
+    padding: 10px 20px;
+    border: 1px solid #ffffff40;
+    border-radius: 999px; /* pill shape */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     font-family: 'Exo 2', sans-serif;
-    font-size: .9em;
-    color: #FFFFFF;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    cursor: pointer;
+    font-size: 0.9em;
+    color: #ffffff;
+    background: rgb(71, 71, 71);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    cursor: default;
+    white-space: nowrap;
 }
 
 .skill-icon {
@@ -411,8 +411,9 @@ h2 {
 }
 
 .skill:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .skill-tooltip {
@@ -438,87 +439,84 @@ h2 {
     display: block;
     animation: fadeIn 0.3s ease-in;
 }
-
+/* //////////////////////////////////////////////////////////// */
 .contact {
-    padding: 40px;
+    padding: 60px 20px;
     text-align: center;
     position: relative;
     overflow: hidden;
     z-index: 1;
 }
 
-.contact::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAAXNSR0IArs4c6QAAABJJREFUCB1jZGBgYGBhYGB4////AOR3BZs6x4IAAAAASUVORK5CYII=') repeat; */
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 0;
-    border-radius: 10px; /* <-- add this */
-}
-
 .contact-text {
-    font-size: 1em;
-    line-height: 1.8;
+    font-size: 1.1em;
+    line-height: 1.6;
     color: #FFFFFF;
-    max-width: 100%;
-    margin: 0 auto 20px;
-    overflow: auto;
-    height: auto;
+    max-width: 700px;
+    margin: 0 auto 30px;
     position: relative;
+    z-index: 2;
+    font-family: 'Exo 2', sans-serif;
 }
 
 .contact-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 18px;
+    z-index: 2;
+    position: relative;
 }
 
 .contact-link {
     display: inline-block;
-    padding: 10px 20px;
-    background: #000000;
-    color: #FFFFFF;
-    text-decoration: none;
-    border: 2px solid #ffffff79;
-    border-radius: 6px;
+    padding: 12px 24px;
+    background: #1a1a1a;
+    color: #e0e0e0;
     font-family: 'Exo 2', sans-serif;
-    font-size: 0.8em;
-    transition: transform 0.3s, box-shadow 0.3s;
+    font-size: 0.85em;
+    text-decoration: none;
+    border: 1px solid #333;
+    clip-path: polygon(
+        5% 0%, 95% 0%, 100% 10%, 100% 90%,
+        95% 100%, 5% 100%, 0 90%, 0 10%
+    );
+    transition: all 0.2s ease-in-out;
 }
 
 .contact-link:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+    /* transform: translateY(-2px) scale(1.04);
+    border-color: #ffffff80;
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05); */
+
+    background: #2a2a2a;
+    color: #fff;
+    border-color: #555;
 }
 
 .contact-tooltip {
     display: none;
     position: absolute;
-    bottom: 100%;
+    bottom: 110%;
     left: 50%;
     transform: translateX(-50%);
-    background: #000;
+    background: rgba(0,0,0,0.85);
     color: #fff;
-    padding: 6px 10px;
+    padding: 6px 12px;
     font-size: 0.75em;
-    border-radius: 4px;
-    border: 1px solid #fff;
-    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ffffff50;
     white-space: nowrap;
     z-index: 10;
 }
 
 .contact-link:hover .contact-tooltip {
     display: block;
-    animation: fadeIn 0.3s ease-in;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
+/* ////////////////////////////////////////////////////////////// */
 footer {
     text-align: center;
     padding: 30px;
