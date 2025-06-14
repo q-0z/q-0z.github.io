@@ -156,6 +156,7 @@ h2 {
     gap: 30px;
     margin-bottom: 40px;
     flex-wrap: wrap;
+
 }
 
 .about-profile img {
@@ -220,10 +221,10 @@ h2 {
     font-size: 1rem;
     line-height: 1.8;
     color: #dddddd;
-    max-width: 800px;
+    /* max-width: 800px; */
     margin: 0 auto;
     text-align: center;
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 
