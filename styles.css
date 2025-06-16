@@ -532,6 +532,9 @@ footer p {
     cursor: pointer;
     z-index: 1000;
     font-size: 0.9em;
+    height: 5.3%;
+    width: 3.3%;
+    text-align: center; 
 }
 /* //////////////////////////////////////////////////////////////////// */
 .project-modal {
