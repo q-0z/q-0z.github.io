@@ -520,6 +520,19 @@ footer p {
     z-index: 1000;
     font-size: 0.9em;
 }
+#animation-toggle {
+    position: fixed;
+    bottom: 80px; /* Above the sound toggle */
+    right: 20px;
+    background: #212121;
+    color: #FFFFFF;
+    border: .5px solid #353535;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 0.9em;
+}
 /* //////////////////////////////////////////////////////////////////// */
 .project-modal {
     display: none;

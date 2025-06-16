@@ -8,7 +8,10 @@ document.addEventListener( 'DOMContentLoaded', () =>
     });
     let scrollPosition = 0;
     // Typewriter effect for About section
-    const aboutText = "An enthusiast self-motivated programmer with 6+ years of extensive experience in game programming and a great understanding of games. Has deep technical knowledge of Unity, Unreal Engine, Game programming and software development. Capable of writing bug-free optimized code for PC and mobile platforms.";
+    const aboutText = " Game programmer with 6+ years of experience in Unity and Unreal Engine, specializing in cross-platform\
+                        development for iOS, Android, Windows, and VR. Skilled in building diverse game genres—Action, Multiplayer,\
+                        RPG, Puzzle, and more—with strong knowledge of optimization, plugin integration, and core software\
+                        development. ";
     let i = 0;
     const aboutTextElement = document.getElementById( 'about-text' );
     if ( aboutTextElement )
@@ -188,16 +191,21 @@ class GameElement {
         }
     }
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Create elements
 const elements = [];
-for (let i = 0; i < 150; i++) {
+for (let i = 0; i < 50; i++) {
     elements.push(new GameElement());
 }
 
 // Animate
 let lastScrollY = window.scrollY;
+
+let animationEnabled = true;
+let animationFrameId;
+
 function animate() {
+     if (!animationEnabled) return;
     try {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const scrollY = window.scrollY - lastScrollY;
@@ -206,13 +214,30 @@ function animate() {
             element.draw();
         });
         lastScrollY = window.scrollY;
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
+        //requestAnimationFrame(animate);
     } catch (error) {
         console.error('Animation loop error:', error);
     }
 }
 animate();
+document.getElementById('animation-toggle').addEventListener('click', () => {
+    animationEnabled = !animationEnabled;
 
+    const button = document.getElementById('animation-toggle');
+    button.textContent = animationEnabled ? '🌀' : '⛔';
+
+    if (animationEnabled) {
+        //animate();
+        lastScrollY = window.scrollY; // reset scroll delta
+        animationFrameId = requestAnimationFrame(animate);
+    } else {
+        cancelAnimationFrame(animationFrameId);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Sound toggle
     let soundEnabled = true;
     const soundToggle = document.getElementById( 'sound-toggle' );
