@@ -201,7 +201,7 @@ for (let i = 0; i < 50; i++) {
 // Animate
 let lastScrollY = window.scrollY;
 
-let animationEnabled = true;
+let animationEnabled = false;
 let animationFrameId;
 
 function animate() {
@@ -221,14 +221,15 @@ function animate() {
     }
 }
 animate();
+
 document.getElementById('animation-toggle').addEventListener('click', () => {
     animationEnabled = !animationEnabled;
 
     const button = document.getElementById('animation-toggle');
-    button.textContent = animationEnabled ? '🌀' : '⛔';
+    // Use innerHTML to render strike-through properly
+    button.innerHTML = animationEnabled ? 'JS' : '<s>JS</s>';
 
     if (animationEnabled) {
-        //animate();
         lastScrollY = window.scrollY; // reset scroll delta
         animationFrameId = requestAnimationFrame(animate);
     } else {
