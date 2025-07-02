@@ -1,11 +1,13 @@
 document.addEventListener( 'DOMContentLoaded', () =>
 {
-    document.addEventListener('click', () => {
-    if (soundEnabled) {
-        myAudio.currentTime = 0; // rewind to start
-        myAudio.play();
-    }
-    });
+    document.addEventListener( 'click', () =>
+    {
+        if ( soundEnabled )
+        {
+            myAudio.currentTime = 0; // rewind to start
+            myAudio.play();
+        }
+    } );
     let scrollPosition = 0;
     // Typewriter effect for About section
     const aboutText = " Game programmer with 6+ years of experience in Unity and Unreal Engine, specializing in cross-platform\
@@ -65,184 +67,208 @@ document.addEventListener( 'DOMContentLoaded', () =>
         }
         typeWriterContact();
     }
-    
+
     // Game-themed background animation
-const canvas = document.getElementById('game-background');
-const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById( 'game-background' );
+    const ctx = canvas.getContext( '2d' );
 
-let mouse = { x: 0, y: 0 };
+    let mouse = { x: 0, y: 0 };
 
-window.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-});
+    window.addEventListener( 'mousemove', ( e ) =>
+    {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    } );
 
-window.addEventListener('click', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const newElement = new GameElement();
-    newElement.x = e.clientX - rect.left;
-    newElement.y = e.clientY - rect.top;
-    elements.push(newElement);
-});
+    window.addEventListener( 'click', ( e ) =>
+    {
+        const rect = canvas.getBoundingClientRect();
+        const newElement = new GameElement();
+        newElement.x = e.clientX - rect.left;
+        newElement.y = e.clientY - rect.top;
+        elements.push( newElement );
+    } );
 
-// Resize canvas
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-// Game element class
-class GameElement {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 20 + 10;
-        this.speedX = (Math.random() - 0.5) * 1.5;
-        this.speedY = (Math.random() - 0.5) * 1.5;
-        this.opacity = Math.random() * 0.5 + 0.5;
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.02;
-        this.type = ['block', 'heart', 'health', 'sword', 'gun'][Math.floor(Math.random() * 5)];
-        this.parallax = Math.random() * 0.5 + 0.5;
-        this.color = this.type === 'block' ? '#F4E76E' :
-                     this.type === 'heart' ? '#FF4D4D' :
-                     this.type === 'health' ? '#4CAF50' :
-                     this.type === 'sword' ? '#B0C4DE' :
-                     '#A9A9A9';
-        this.innerColor = this.type === 'block' ? '#264653' : this.color;
+    // Resize canvas
+    function resizeCanvas ()
+    {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
+    window.addEventListener( 'resize', resizeCanvas );
+    resizeCanvas();
 
-    draw() {
-        ctx.save();
-        ctx.globalAlpha = this.opacity;
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
+    // Game element class
+    class GameElement
+    {
+        constructor ()
+        {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 20 + 10;
+            this.speedX = ( Math.random() - 0.5 ) * 1.5;
+            this.speedY = ( Math.random() - 0.5 ) * 1.5;
+            this.opacity = Math.random() * 0.5 + 0.5;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotationSpeed = ( Math.random() - 0.5 ) * 0.02;
+            this.type = [ 'block', 'heart', 'health', 'sword', 'gun' ][ Math.floor( Math.random() * 5 ) ];
+            this.parallax = Math.random() * 0.5 + 0.5;
+            this.color = this.type === 'block' ? '#F4E76E' :
+                this.type === 'heart' ? '#FF4D4D' :
+                    this.type === 'health' ? '#4CAF50' :
+                        this.type === 'sword' ? '#B0C4DE' :
+                            '#A9A9A9';
+            this.innerColor = this.type === 'block' ? '#264653' : this.color;
+        }
 
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const nearMouse = dist < 100;
-        const effectiveSize = nearMouse ? this.size * 1.4 : this.size;
+        draw ()
+        {
+            ctx.save();
+            ctx.globalAlpha = this.opacity;
+            ctx.translate( this.x, this.y );
+            ctx.rotate( this.rotation );
 
-        ctx.fillStyle = this.color;
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const dist = Math.sqrt( dx * dx + dy * dy );
+            const nearMouse = dist < 100;
+            const effectiveSize = nearMouse ? this.size * 1.4 : this.size;
 
-        try {
-            if (this.type === 'block') {
-                ctx.fillRect(-effectiveSize / 2, -effectiveSize / 2, effectiveSize * 0.8, effectiveSize * 0.8);
-                ctx.fillStyle = this.innerColor;
-                ctx.fillRect(-effectiveSize / 4, -effectiveSize / 4, effectiveSize / 2, effectiveSize / 2);
-            } else if (this.type === 'heart') {
-                ctx.beginPath();
-                ctx.moveTo(0, effectiveSize / 4);
-                ctx.bezierCurveTo(-effectiveSize / 2, -effectiveSize / 2, -effectiveSize, effectiveSize / 4, 0, effectiveSize);
-                ctx.bezierCurveTo(effectiveSize, effectiveSize / 4, effectiveSize / 2, -effectiveSize / 2, 0, effectiveSize / 4);
-                ctx.closePath();
-                ctx.fill();
-            } else if (this.type === 'health') {
-                ctx.beginPath();
-                ctx.fillRect(-effectiveSize / 4, -effectiveSize / 2, effectiveSize / 2, effectiveSize);
-                ctx.fillRect(-effectiveSize / 2, -effectiveSize / 4, effectiveSize, effectiveSize / 2);
-                ctx.closePath();
-                ctx.fill();
-            } else if (this.type === 'sword') {
-                ctx.beginPath();
-                ctx.moveTo(0, -effectiveSize / 2);
-                ctx.lineTo(-effectiveSize / 8, effectiveSize / 4);
-                ctx.lineTo(-effectiveSize / 3, effectiveSize / 4);
-                ctx.lineTo(-effectiveSize / 4, effectiveSize / 2);
-                ctx.lineTo(effectiveSize / 4, effectiveSize / 2);
-                ctx.lineTo(effectiveSize / 3, effectiveSize / 4);
-                ctx.lineTo(effectiveSize / 8, effectiveSize / 4);
-                ctx.lineTo(0, -effectiveSize / 2);
-                ctx.closePath();
-                ctx.fill();
-            } else if (this.type === 'gun') {
-                ctx.beginPath();
-                ctx.fillRect(-effectiveSize / 2, -effectiveSize / 8, effectiveSize / 2, effectiveSize / 4);
-                ctx.moveTo(0, -effectiveSize / 8);
-                ctx.lineTo(effectiveSize / 8, effectiveSize / 2);
-                ctx.lineTo(-effectiveSize / 8, effectiveSize / 2);
-                ctx.lineTo(0, -effectiveSize / 8);
-                ctx.closePath();
-                ctx.fill();
+            ctx.fillStyle = this.color;
+
+            try
+            {
+                if ( this.type === 'block' )
+                {
+                    ctx.fillRect( -effectiveSize / 2, -effectiveSize / 2, effectiveSize * 0.8, effectiveSize * 0.8 );
+                    ctx.fillStyle = this.innerColor;
+                    ctx.fillRect( -effectiveSize / 4, -effectiveSize / 4, effectiveSize / 2, effectiveSize / 2 );
+                } else if ( this.type === 'heart' )
+                {
+                    ctx.beginPath();
+                    ctx.moveTo( 0, effectiveSize / 4 );
+                    ctx.bezierCurveTo( -effectiveSize / 2, -effectiveSize / 2, -effectiveSize, effectiveSize / 4, 0, effectiveSize );
+                    ctx.bezierCurveTo( effectiveSize, effectiveSize / 4, effectiveSize / 2, -effectiveSize / 2, 0, effectiveSize / 4 );
+                    ctx.closePath();
+                    ctx.fill();
+                } else if ( this.type === 'health' )
+                {
+                    ctx.beginPath();
+                    ctx.fillRect( -effectiveSize / 4, -effectiveSize / 2, effectiveSize / 2, effectiveSize );
+                    ctx.fillRect( -effectiveSize / 2, -effectiveSize / 4, effectiveSize, effectiveSize / 2 );
+                    ctx.closePath();
+                    ctx.fill();
+                } else if ( this.type === 'sword' )
+                {
+                    ctx.beginPath();
+                    ctx.moveTo( 0, -effectiveSize / 2 );
+                    ctx.lineTo( -effectiveSize / 8, effectiveSize / 4 );
+                    ctx.lineTo( -effectiveSize / 3, effectiveSize / 4 );
+                    ctx.lineTo( -effectiveSize / 4, effectiveSize / 2 );
+                    ctx.lineTo( effectiveSize / 4, effectiveSize / 2 );
+                    ctx.lineTo( effectiveSize / 3, effectiveSize / 4 );
+                    ctx.lineTo( effectiveSize / 8, effectiveSize / 4 );
+                    ctx.lineTo( 0, -effectiveSize / 2 );
+                    ctx.closePath();
+                    ctx.fill();
+                } else if ( this.type === 'gun' )
+                {
+                    ctx.beginPath();
+                    ctx.fillRect( -effectiveSize / 2, -effectiveSize / 8, effectiveSize / 2, effectiveSize / 4 );
+                    ctx.moveTo( 0, -effectiveSize / 8 );
+                    ctx.lineTo( effectiveSize / 8, effectiveSize / 2 );
+                    ctx.lineTo( -effectiveSize / 8, effectiveSize / 2 );
+                    ctx.lineTo( 0, -effectiveSize / 8 );
+                    ctx.closePath();
+                    ctx.fill();
+                }
+            } catch ( error )
+            {
+                console.error( 'Draw error for', this.type, ':', error );
             }
-        } catch (error) {
-            console.error('Draw error for', this.type, ':', error);
+
+            ctx.restore();
         }
 
-        ctx.restore();
-    }
+        update ( scrollY )
+        {
+            try
+            {
+                this.x += this.speedX * this.parallax;
+                this.y += this.speedY - scrollY * 0.05 * this.parallax;
+                this.rotation += this.rotationSpeed;
 
-    update(scrollY) {
-        try {
-            this.x += this.speedX * this.parallax;
-            this.y += this.speedY - scrollY * 0.05 * this.parallax;
-            this.rotation += this.rotationSpeed;
-
-            if (this.x < -this.size) this.x += canvas.width + this.size * 2;
-            if (this.x > canvas.width + this.size) this.x -= canvas.width + this.size * 2;
-            if (this.y < -this.size) this.y += canvas.height + this.size * 2;
-            if (this.y > canvas.height + this.size) this.y -= canvas.height + this.size * 2;
-        } catch (error) {
-            console.error('Update error:', error);
+                if ( this.x < -this.size ) this.x += canvas.width + this.size * 2;
+                if ( this.x > canvas.width + this.size ) this.x -= canvas.width + this.size * 2;
+                if ( this.y < -this.size ) this.y += canvas.height + this.size * 2;
+                if ( this.y > canvas.height + this.size ) this.y -= canvas.height + this.size * 2;
+            } catch ( error )
+            {
+                console.error( 'Update error:', error );
+            }
         }
     }
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Create elements
-const elements = [];
-for (let i = 0; i < 50; i++) {
-    elements.push(new GameElement());
-}
-
-// Animate
-let lastScrollY = window.scrollY;
-
-let animationEnabled = false;
-let animationFrameId;
-
-function animate() {
-     if (!animationEnabled) return;
-    try {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const scrollY = window.scrollY - lastScrollY;
-        elements.forEach(element => {
-            element.update(scrollY);
-            element.draw();
-        });
-        lastScrollY = window.scrollY;
-        animationFrameId = requestAnimationFrame(animate);
-        //requestAnimationFrame(animate);
-    } catch (error) {
-        console.error('Animation loop error:', error);
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Create elements
+    const elements = [];
+    for ( let i = 0; i < 50; i++ )
+    {
+        elements.push( new GameElement() );
     }
-}
-animate();
 
-document.getElementById('animation-toggle').addEventListener('click', () => {
-    animationEnabled = !animationEnabled;
+    // Animate
+    let lastScrollY = window.scrollY;
 
-    const button = document.getElementById('animation-toggle');
-    // Use innerHTML to render strike-through properly
-    button.innerHTML = animationEnabled ? 'JS' : '<s>JS</s>';
+    let animationEnabled = false;
+    let animationFrameId;
 
-    if (animationEnabled) {
-        lastScrollY = window.scrollY; // reset scroll delta
-        animationFrameId = requestAnimationFrame(animate);
-    } else {
-        cancelAnimationFrame(animationFrameId);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function animate ()
+    {
+        if ( !animationEnabled ) return;
+        try
+        {
+            ctx.clearRect( 0, 0, canvas.width, canvas.height );
+            const scrollY = window.scrollY - lastScrollY;
+            elements.forEach( element =>
+            {
+                element.update( scrollY );
+                element.draw();
+            } );
+            lastScrollY = window.scrollY;
+            animationFrameId = requestAnimationFrame( animate );
+            //requestAnimationFrame(animate);
+        } catch ( error )
+        {
+            console.error( 'Animation loop error:', error );
+        }
     }
-});
+    animate();
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+    document.getElementById( 'animation-toggle' ).addEventListener( 'click', () =>
+    {
+        animationEnabled = !animationEnabled;
+
+        const button = document.getElementById( 'animation-toggle' );
+        // Use innerHTML to render strike-through properly
+        button.innerHTML = animationEnabled ? ' JS ' : '<s> JS </s>';
+
+        if ( animationEnabled )
+        {
+            lastScrollY = window.scrollY; // reset scroll delta
+            animationFrameId = requestAnimationFrame( animate );
+        } else
+        {
+            cancelAnimationFrame( animationFrameId );
+            ctx.clearRect( 0, 0, canvas.width, canvas.height );
+        }
+    } );
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Sound toggle
     let soundEnabled = true;
     const soundToggle = document.getElementById( 'sound-toggle' );
-    const myAudio = document.getElementById('my-audio');
+    const myAudio = document.getElementById( 'my-audio' );
     if ( soundToggle )
     {
         const toggleSound = () =>
@@ -251,9 +277,11 @@ document.getElementById('animation-toggle').addEventListener('click', () => {
             {
                 soundEnabled = !soundEnabled;
                 soundToggle.textContent = soundEnabled ? '🔊' : '🔇';
-                if (soundEnabled) {
+                if ( soundEnabled )
+                {
                     myAudio.play();
-                } else {
+                } else
+                {
                     myAudio.pause();
                     myAudio.currentTime = 0; // Optional: reset to start
                 }
@@ -385,8 +413,8 @@ document.getElementById('animation-toggle').addEventListener('click', () => {
             ],
             links: {
                 website: 'https://vegametalstructures.sensei3d.com/',
-                 appstore: null,
-                 playstore: null
+                appstore: null,
+                playstore: null
             }
         },
         'astral-3d-visualizer': {
@@ -411,8 +439,8 @@ document.getElementById('animation-toggle').addEventListener('click', () => {
             ],
             links: {
                 website: 'https://jogohealth.com',
-                 appstore: null,
-                 playstore: null
+                appstore: null,
+                playstore: null
             }
         },
         'vizit-app': {
