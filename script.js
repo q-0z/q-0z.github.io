@@ -669,16 +669,20 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 img.className = index === 0 ? 'active' : '';
                 sliderImages.appendChild( img );
             } );
-
-            const modalVideo = document.querySelector( '.modal-video' );
+            /////////
+            // Create modal-video element if it doesn't exist
+            let modalVideo = document.querySelector( '.modal-video' );
             if ( !modalVideo )
             {
-                console.error( 'modal-video element not found in DOM' );
-                return;
+                modalVideo = document.createElement( 'div' );
+                modalVideo.classList.add( 'modal-video', 'modal-video-hidden' );
+                document.querySelector( '.slider-container' )?.appendChild( modalVideo );
             }
+
             modalVideo.innerHTML = '';
             modalVideo.classList.remove( 'modal-video-hidden' );
             sliderImages.prepend( modalVideo );
+
             if ( project.youtube && typeof project.youtube === 'string' && project.youtube.startsWith( 'https://www.youtube.com/embed/' ) )
             {
                 const iframe = document.createElement( 'iframe' );
@@ -695,10 +699,10 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 {
                     console.error( `Failed to load YouTube video for ${ projectId }: ${ project.youtube }` );
                     modalVideo.innerHTML = `
-                        <div style="color: #fff; text-align: center; padding: 20px; background: #1E1E1E; border: 1px solid #5C6BC0; border-radius: 16px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <p>Video blocked (ad-blocker or browser settings). Disable ad-blockers or <a href="${ project.youtube.split( '?' )[ 0 ] }" target="_blank" style="color: #5C6BC0; text-decoration: underline;">watch on YouTube</a>.</p>
-                            <button onclick="window.location.href='${ project.youtube }'" style="background: #5C6BC0; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-top: 10px;">Play Video</button>
-                        </div>`;
+            <div style="color: #fff; text-align: center; padding: 20px; background: #1E1E1E; border: 1px solid #5C6BC0; border-radius: 16px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <p>Video blocked (ad-blocker or browser settings). Disable ad-blockers or <a href="${ project.youtube.split( '?' )[ 0 ] }" target="_blank" style="color: #5C6BC0; text-decoration: underline;">watch on YouTube</a>.</p>
+                <button onclick="window.location.href='${ project.youtube }'" style="background: #5C6BC0; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-top: 10px;">Play Video</button>
+            </div>`;
                     modalVideo.classList.remove( 'modal-video-hidden' );
                 } );
                 iframe.addEventListener( 'load', () =>
@@ -711,6 +715,19 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 modalVideo.classList.add( 'modal-video-hidden' );
                 modalVideo.innerHTML = '';
             }
+
+            // Event delegation for click handling
+            document.querySelector( '.slider-container' )?.addEventListener( 'click', ( e ) =>
+            {
+                const target = e.target.closest( '.modal-video, img' );
+                if ( target )
+                {
+                    const index = target.classList.contains( 'modal-video' ) ? 0 : Array.from( sliderImages.querySelectorAll( 'img' ) ).indexOf( target ) + ( modalVideo.classList.contains( 'modal-video-hidden' ) ? 0 : 1 );
+                    currentSlide = index;
+                    updateSlider();
+                }
+            } );
+            ///////////////
 
             projectModal.classList.add( 'active' );
             document.body.classList.add( 'modal-active' );
