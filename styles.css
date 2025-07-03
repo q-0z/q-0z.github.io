@@ -541,14 +541,14 @@ footer p {
 .project-modal {
     display: none;
     position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(10, 10, 10, 0.65);
-    z-index: 2000;
-    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
     align-items: center;
-    backdrop-filter: blur(8px);
+    justify-content: center;
 }
 
 .project-modal.active {
@@ -572,27 +572,34 @@ footer p {
 
 .modal-video {
     position: relative;
-    width: 100%;
-    max-width: 800px;
-    height: 450px; /* Fixed height for 16:9 at max-width */
-    margin: 32px auto;
+    width: 28vw;
+    max-width: 280px;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0.45;
+    transform: scale(0.8);
+    transition: all 0.4s ease;
+    flex-shrink: 0;
     border: 1px solid #5C6BC0;
     border-radius: 16px;
-    background: #1E1E1E; /* Visible background */
-    box-shadow: 0 0 20px rgba(92, 107, 192, 0.2);
-    display: block;
-    visibility: visible !important; /* Force visibility */
+    background: #1E1E1E;
+}
+
+.modal-video.active {
+    opacity: 1;
+    transform: scale(1.3);
+    box-shadow: 0 0 30px rgba(92, 107, 192, 0.4);
 }
 
 .modal-video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     border: none;
-    z-index: 1;
+    border-radius: 16px;
     display: block;
+}
+.modal-video.modal-video-hidden {
+    display: none !important;
 }
 
 .modal-video div {
@@ -642,14 +649,14 @@ footer p {
     max-height: 100%;
     object-fit: contain;
     opacity: 0.45;
-    transform: scale(0.85);
+    transform: scale(0.8);
     transition: all 0.4s ease;
     flex-shrink: 0;
 }
 
 .slider-images img.active {
     opacity: 1;
-    transform: scale(1.15);
+    transform: scale(1.3);
 }
 
 .slider-prev,
@@ -731,8 +738,8 @@ footer p {
 
 .modal-description p {
     font-size: 1rem;
-    line-height: 1.7;
-    max-width: 700px;
+    /* line-height: 1.7; */
+     /* max-width: 700px; */
     margin: 0 auto;
     color: #dcdcdc;
 }

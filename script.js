@@ -393,7 +393,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/Vega_1.png',
                 'images/Projects/Vega_2.png'
             ],
-            youtube: 'https://www.youtube.com/embed/1-T_GyJJ4x8?autoplay=1&mute=1&rel=0',
+            youtube: null,
             links: {
                 website: 'https://vegametalstructures.sensei3d.com/',
                 appstore: null,
@@ -540,7 +540,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/MS_6.jpg',
                 'images/Projects/MS_7.jpg',
             ],
-            youtube: null,
+            youtube: 'https://www.youtube.com/embed/Z6FbuELkCLc?autoplay=1&mute=1&rel=0',
             links: {
                 website: null,
                 appstore: null,
@@ -574,7 +574,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/zb_7.jpg',
                 'images/Projects/zb_6.jpg',
             ],
-            youtube: null,
+            youtube: 'https://www.youtube.com/embed/icLlDUK3sag?autoplay=1&mute=1&rel=0',
             links: {
                 website: null,
                 appstore: null,
@@ -589,7 +589,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/casvr_2.jpg',
                 'images/Projects/casvr_3.jpg'
             ],
-            youtube: null,
+            youtube: 'https://www.youtube.com/embed/HCD4gbgyY1M?autoplay=1&mute=1&rel=0',
             links: {
                 website: null,
                 appstore: null,
@@ -633,6 +633,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
     {
         try
         {
+            console.log( 'Opening modal for project:', card.getAttribute( 'data-project-id' ) );
             const projectId = card.getAttribute( 'data-project-id' );
             const project = projectData[ projectId ];
             if ( !project )
@@ -643,9 +644,22 @@ document.addEventListener( 'DOMContentLoaded', () =>
 
             scrollPosition = window.scrollY;
 
+            const modalTitle = document.getElementById( 'modal-title' );
+            const modalText = document.getElementById( 'modal-text' );
+            if ( !modalTitle || !modalText )
+            {
+                console.error( 'Modal title or text element not found in DOM' );
+                return;
+            }
             modalTitle.textContent = project.title;
             modalText.textContent = project.description;
 
+            const sliderImages = document.getElementById( 'slider-images' );
+            if ( !sliderImages )
+            {
+                console.error( 'slider-images element not found in DOM' );
+                return;
+            }
             sliderImages.innerHTML = '';
             project.images.forEach( ( src, index ) =>
             {
@@ -657,73 +671,51 @@ document.addEventListener( 'DOMContentLoaded', () =>
             } );
 
             const modalVideo = document.querySelector( '.modal-video' );
-            if ( modalVideo )
+            if ( !modalVideo )
             {
-                modalVideo.innerHTML = '';
-                modalVideo.classList.remove( 'modal-video-hidden' );
-                if ( project.youtube && typeof project.youtube === 'string' && project.youtube.startsWith( 'https://www.youtube.com/embed/' ) )
+                console.error( 'modal-video element not found in DOM' );
+                return;
+            }
+            modalVideo.innerHTML = '';
+            modalVideo.classList.remove( 'modal-video-hidden' );
+            sliderImages.prepend( modalVideo );
+            if ( project.youtube && typeof project.youtube === 'string' && project.youtube.startsWith( 'https://www.youtube.com/embed/' ) )
+            {
+                const iframe = document.createElement( 'iframe' );
+                iframe.src = project.youtube.includes( 'enablejsapi' ) ? project.youtube : `${ project.youtube }&enablejsapi=1`;
+                iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+                iframe.allowFullscreen = true;
+                iframe.title = `${ project.title } YouTube Video`;
+                iframe.setAttribute( 'frameborder', '0' );
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.borderRadius = '16px';
+                iframe.style.display = 'block';
+                iframe.addEventListener( 'error', () =>
                 {
-                    const iframe = document.createElement( 'iframe' );
-                    iframe.src = project.youtube;
-                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
-                    iframe.allowFullscreen = true;
-                    iframe.title = `${ project.title } YouTube Video`;
-                    iframe.setAttribute( 'frameborder', '0' );
-                    iframe.style.display = 'block';
-                    iframe.addEventListener( 'error', () =>
-                    {
-                        console.error( `Failed to load YouTube video for ${ projectId }: ${ project.youtube }` );
-                        modalVideo.innerHTML = `
-                            <div style="color: #fff; text-align: center; padding: 20px; background: #1E1E1E; border: 1px solid #5C6BC0; border-radius: 16px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                                <p>Video blocked (ad-blocker or browser settings). Disable ad-blockers or <a href="${ project.youtube.split( '?' )[ 0 ] }" target="_blank" style="color: #5C6BC0; text-decoration: underline;">watch on YouTube</a>.</p>
-                                <button onclick="window.location.href='${ project.youtube }'" style="background: #5C6BC0; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-top: 10px;">Play Video</button>
-                            </div>`;
-                        modalVideo.classList.remove( 'modal-video-hidden' );
-                    } );
-                    iframe.addEventListener( 'load', () =>
-                    {
-                        console.log( `YouTube iframe loaded for ${ projectId }` );
-                    } );
-                    modalVideo.appendChild( iframe );
-                } else
-                {
+                    console.error( `Failed to load YouTube video for ${ projectId }: ${ project.youtube }` );
                     modalVideo.innerHTML = `
                         <div style="color: #fff; text-align: center; padding: 20px; background: #1E1E1E; border: 1px solid #5C6BC0; border-radius: 16px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <p>No video available for this project.</p>
+                            <p>Video blocked (ad-blocker or browser settings). Disable ad-blockers or <a href="${ project.youtube.split( '?' )[ 0 ] }" target="_blank" style="color: #5C6BC0; text-decoration: underline;">watch on YouTube</a>.</p>
+                            <button onclick="window.location.href='${ project.youtube }'" style="background: #5C6BC0; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-top: 10px;">Play Video</button>
                         </div>`;
-                    modalVideo.classList.add( 'modal-video-hidden' );
-                }
+                    modalVideo.classList.remove( 'modal-video-hidden' );
+                } );
+                iframe.addEventListener( 'load', () =>
+                {
+                    console.log( `YouTube iframe loaded for ${ projectId }` );
+                } );
+                modalVideo.appendChild( iframe );
             } else
             {
-                console.error( 'modalVideo element not found in DOM' );
+                modalVideo.classList.add( 'modal-video-hidden' );
+                modalVideo.innerHTML = '';
             }
-
-            const modalLinks = document.querySelector( '.modal-links' );
-            modalLinks.innerHTML = '';
-            const linkTypes = [
-                { type: 'website', label: 'Visit Website', tooltip: 'Go to the live project site' },
-                { type: 'appstore', label: 'App Store', tooltip: 'Download on the App Store' },
-                { type: 'playstore', label: 'Play Store', tooltip: 'Download on Google Play' }
-            ];
-            linkTypes.forEach( link =>
-            {
-                if ( project.links[ link.type ] )
-                {
-                    const a = document.createElement( 'a' );
-                    a.href = project.links[ link.type ];
-                    a.className = `modal-link ${ link.type }`;
-                    a.target = '_blank';
-                    a.rel = 'noopener noreferrer';
-                    a.innerHTML = `${ link.label }<span class="modal-link-tooltip">${ link.tooltip }</span>`;
-                    modalLinks.appendChild( a );
-                }
-            } );
-
-            currentSlide = 0;
-            updateSlider();
 
             projectModal.classList.add( 'active' );
             document.body.classList.add( 'modal-active' );
+            currentSlide = 0;
+            updateSlider();
         } catch ( e )
         {
             console.error( 'Error opening project modal:', e );
@@ -745,22 +737,45 @@ document.addEventListener( 'DOMContentLoaded', () =>
 
     function updateSlider ()
     {
-        const totalSlides = sliderImages.children.length;
+        const modalVideo = document.querySelector( '.modal-video' );
+        const hasVideo = !modalVideo.classList.contains( 'modal-video-hidden' );
+        const images = sliderImages.querySelectorAll( 'img' );
+        const totalSlides = hasVideo ? images.length + 1 : images.length;
         if ( totalSlides > 0 )
         {
             currentSlide = ( currentSlide + totalSlides ) % totalSlides;
-            const images = sliderImages.querySelectorAll( 'img' );
+            modalVideo.classList.toggle( 'active', hasVideo && currentSlide === 0 );
             images.forEach( ( img, index ) =>
             {
                 img.classList.remove( 'active' );
-                if ( index === currentSlide )
+                if ( hasVideo && currentSlide > 0 && index === currentSlide - 1 )
+                {
+                    img.classList.add( 'active' );
+                } else if ( !hasVideo && index === currentSlide )
                 {
                     img.classList.add( 'active' );
                 }
             } );
-            const activeImage = sliderImages.children[ currentSlide ];
-            const offset = -( activeImage.offsetWidth * currentSlide - ( sliderImages.parentElement.offsetWidth / 2 - activeImage.offsetWidth / 2 ) );
-            sliderImages.style.transform = `translateX(${ offset }px)`;
+            const slideWidth = hasVideo && currentSlide === 0
+                ? modalVideo.getBoundingClientRect().width
+                : ( images[ 0 ]?.getBoundingClientRect().width || 280 );
+            const containerWidth = sliderImages.parentElement.getBoundingClientRect().width;
+            const gap = 16;
+            const totalContentWidth = slideWidth * totalSlides + ( totalSlides - 1 ) * gap;
+            const maxOffset = Math.max( 0, totalContentWidth - containerWidth );
+            const offset = -( slideWidth * currentSlide + ( currentSlide * gap ) );
+            sliderImages.style.transform = `translateX(${ Math.max( offset, -maxOffset ) }px)`;
+            const iframe = modalVideo.querySelector( 'iframe' );
+            if ( hasVideo && iframe )
+            {
+                if ( currentSlide === 0 )
+                {
+                    iframe.contentWindow.postMessage( '{"event":"command","func":"playVideo","args":""}', '*' );
+                } else
+                {
+                    iframe.contentWindow.postMessage( '{"event":"command","func":"pauseVideo","args":""}', '*' );
+                }
+            }
         }
     }
 
