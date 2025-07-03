@@ -209,17 +209,14 @@ document.addEventListener( 'DOMContentLoaded', () =>
             }
         }
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Create elements
+
     const elements = [];
     for ( let i = 0; i < 50; i++ )
     {
         elements.push( new GameElement() );
     }
 
-    // Animate
     let lastScrollY = window.scrollY;
-
     let animationEnabled = false;
     let animationFrameId;
 
@@ -237,7 +234,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
             } );
             lastScrollY = window.scrollY;
             animationFrameId = requestAnimationFrame( animate );
-            //requestAnimationFrame(animate);
         } catch ( error )
         {
             console.error( 'Animation loop error:', error );
@@ -248,14 +244,12 @@ document.addEventListener( 'DOMContentLoaded', () =>
     document.getElementById( 'animation-toggle' ).addEventListener( 'click', () =>
     {
         animationEnabled = !animationEnabled;
-
         const button = document.getElementById( 'animation-toggle' );
-        // Use innerHTML to render strike-through properly
         button.innerHTML = animationEnabled ? ' JS ' : '<s> JS </s>';
 
         if ( animationEnabled )
         {
-            lastScrollY = window.scrollY; // reset scroll delta
+            lastScrollY = window.scrollY;
             animationFrameId = requestAnimationFrame( animate );
         } else
         {
@@ -264,8 +258,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
         }
     } );
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Sound toggle
     let soundEnabled = true;
     const soundToggle = document.getElementById( 'sound-toggle' );
     const myAudio = document.getElementById( 'my-audio' );
@@ -283,7 +275,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 } else
                 {
                     myAudio.pause();
-                    myAudio.currentTime = 0; // Optional: reset to start
+                    myAudio.currentTime = 0;
                 }
             } catch ( error )
             {
@@ -296,13 +288,8 @@ document.addEventListener( 'DOMContentLoaded', () =>
             e.preventDefault();
             toggleSound();
         } );
-
-        // if (soundEnabled) {
-        //     myAudio.play();
-        // }
     }
 
-    // Smooth scrolling
     const navLinks = document.querySelectorAll( 'nav a' );
     navLinks.forEach( anchor =>
     {
@@ -333,7 +320,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
         } );
     } );
 
-    // Header scroll effect
     window.addEventListener( 'scroll', () =>
     {
         try
@@ -355,7 +341,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
         }
     } );
 
-    // Project card animations
     const projectCards = document.querySelectorAll( '.project-card' );
     if ( projectCards.length )
     {
@@ -378,7 +363,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
         projectCards.forEach( card => projectObserver.observe( card ) );
     }
 
-    // Stat bar animation on load
     const statBars = document.querySelectorAll( '.stat-bar' );
     statBars.forEach( bar =>
     {
@@ -392,7 +376,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
         }
     } );
 
-    // Project Modal Functionality
     const projectModal = document.getElementById( 'project-modal' );
     const modalTitle = document.getElementById( 'modal-title' );
     const modalText = document.getElementById( 'modal-text' );
@@ -401,7 +384,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
     const sliderNext = document.getElementById( 'slider-next' );
     let currentSlide = 0;
 
-    // Project data
     const projectData = {
         'vega-metal-structures': {
             title: 'Vega Metal Structures',
@@ -411,6 +393,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/Vega_1.png',
                 'images/Projects/Vega_2.png'
             ],
+            youtube: 'https://www.youtube.com/embed/1-T_GyJJ4x8?autoplay=1&mute=1&rel=0',
             links: {
                 website: 'https://vegametalstructures.sensei3d.com/',
                 appstore: null,
@@ -426,6 +409,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/AST_2.png',
                 'images/Projects/AST_3.png',
             ],
+            youtube: null,
             links: {
                 playstore: 'https://play.google.com/store/apps/details?id=astral.teffexf&hl=en_IN',
                 website: null,
@@ -435,8 +419,8 @@ document.addEventListener( 'DOMContentLoaded', () =>
         'jogo-health': {
             title: 'JoGo Health',
             description: 'A React Native and Unity app using C# and Java, enabling neuromuscular patients to play games using muscle contractions from Shimmer wearable devices.',
-            images: [
-            ],
+            images: [],
+            youtube: null,
             links: {
                 website: 'https://jogohealth.com',
                 appstore: null,
@@ -451,6 +435,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/Vizit_1.png',
                 'images/Projects/Vizit_2.png',
             ],
+            youtube: null,
             links: {
                 website: null,
                 appstore: 'https://apps.apple.com/us/app/nielsen-vizit/id1532264072',
@@ -465,6 +450,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/WM_1.png',
                 'images/Projects/WM_2.png'
             ],
+            youtube: null,
             links: {
                 website: 'https://images-na.ssl-images-amazon.com/images/I/D1dGrPKK+wS.mp4',
                 appstore: 'https://www.amazon.com/Biswa-Games-Word-Mason/dp/B01DRPHZ02/ref=sr_1_2?dib=eyJ2IjoiMSJ9.H3is2MQrwhn5aURB1yIcIo2pn1FDBcyXvThr52GTgL3GjHj071QN20LucGBJIEps.yUgsBa-dhUcrI93EEjQMgBL0_VCJ3KaWi_xYERShqX8&dib_tag=se&qid=1749701848&refinements=p_4%3ABiswa+Games&s=mobile-apps&search-type=ss&sr=1-2',
@@ -479,6 +465,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/MB_1.jpg',
                 'images/Projects/MB_2.jpg'
             ],
+            youtube: null,
             links: {
                 website: 'https://images-na.ssl-images-amazon.com/images/I/E1K7dINbjGS.mp4',
                 appstore: 'https://www.amazon.com/Biswa-Games-Maze-Bomber/dp/B01MSQBKDQ/ref=sr_1_1?dib=eyJ2IjoiMSJ9.H3is2MQrwhn5aURB1yIcIo2pn1FDBcyXvThr52GTgL3GjHj071QN20LucGBJIEps.yUgsBa-dhUcrI93EEjQMgBL0_VCJ3KaWi_xYERShqX8&dib_tag=se&qid=1749700435&refinements=p_4%3ABiswa+Games&s=mobile-apps&sr=1-1',
@@ -491,6 +478,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
             images: [
                 'images/Projects/TVM_1.png'
             ],
+            youtube: null,
             links: {
                 website: null,
                 appstore: null,
@@ -505,6 +493,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/lgs_1.png',
                 'images/Projects/lgs_2.png',
             ],
+            youtube: null,
             links: {
                 website: 'https://letsgosee.world/',
                 appstore: 'https://apps.apple.com/gb/app/lets-go-see-kids-ar-game/id1536127623',
@@ -513,13 +502,13 @@ document.addEventListener( 'DOMContentLoaded', () =>
         },
         'rotate3d': {
             title: 'Rotate3d',
-            description: 'Rotate 3D is a unique VR Rhythm Game to avoid the obstacles which are riding on the beat.Collect gems to unlock new powers.\
-            Rotate through the tunnels to enjoy a unique environment.Do not forget to pick up your powers of Health & Shield.It gives you an extra bit of support that you need.',
+            description: 'Rotate 3D is a unique VR Rhythm Game to avoid the obstacles which are riding on the beat. Collect gems to unlock new powers. Rotate through the tunnels to enjoy a unique environment. Do not forget to pick up your powers of Health & Shield. It gives you an extra bit of support that you need.',
             images: [
                 'images/Projects/r3d_1.jpg',
                 'images/Projects/r3d_2.jpg',
                 'images/Projects/r3d_3.jpg'
             ],
+            youtube: null,
             links: {
                 website: null,
                 appstore: 'https://www.meta.com/en-gb/experiences/pcvr/rotate-3d/3505572796210615/',
@@ -533,6 +522,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/BH_0.png',
                 'images/Projects/BH_2.png',
             ],
+            youtube: null,
             links: {
                 website: null,
                 appstore: null,
@@ -550,6 +540,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/MS_6.jpg',
                 'images/Projects/MS_7.jpg',
             ],
+            youtube: null,
             links: {
                 website: null,
                 appstore: null,
@@ -558,14 +549,14 @@ document.addEventListener( 'DOMContentLoaded', () =>
         },
         'firesky': {
             title: 'Fire Sky',
-            description: 'FIRESKY is a multiplayer action RPG with strategic PVP and card collection elements.\
-            The game follows a cast of heroes who overcome tremendous odds to fight a great evil spreading throughout the universe.',
+            description: 'FIRESKY is a multiplayer action RPG with strategic PVP and card collection elements. The game follows a cast of heroes who overcome tremendous odds to fight a great evil spreading throughout the universe.',
             images: [
                 'images/Projects/fs_1.jpg',
                 'images/Projects/fs_2.jpg',
                 'images/Projects/fs_3.jpg',
                 'images/Projects/fs_4.jpg',
             ],
+            youtube: null,
             links: {
                 website: 'https://store.steampowered.com/app/2859900/FIRESKY/',
                 appstore: null,
@@ -583,6 +574,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/zb_7.jpg',
                 'images/Projects/zb_6.jpg',
             ],
+            youtube: null,
             links: {
                 website: null,
                 appstore: null,
@@ -597,6 +589,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/casvr_2.jpg',
                 'images/Projects/casvr_3.jpg'
             ],
+            youtube: null,
             links: {
                 website: null,
                 appstore: null,
@@ -612,6 +605,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/MR_4.png',
                 'images/Projects/MR_5.png',
             ],
+            youtube: null,
             links: {
                 website: null,
                 appstore: null,
@@ -626,6 +620,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/CH_1.png',
                 'images/Projects/CH_2.png'
             ],
+            youtube: null,
             links: {
                 website: null,
                 appstore: null,
@@ -634,76 +629,113 @@ document.addEventListener( 'DOMContentLoaded', () =>
         }
     };
 
-    // Function to open modal
     const openModal = ( card ) =>
     {
         try
         {
             const projectId = card.getAttribute( 'data-project-id' );
             const project = projectData[ projectId ];
-            if ( project )
+            if ( !project )
             {
-                // Store scroll position
-                scrollPosition = window.scrollY;
-                // Populate modal
-                modalTitle.textContent = project.title;
-                modalText.textContent = project.description;
-
-                // Populate slider images
-                sliderImages.innerHTML = '';
-                project.images.forEach( ( src, index ) =>
-                {
-                    const img = document.createElement( 'img' );
-                    img.src = src;
-                    img.alt = `${ project.title } screenshot`;
-                    img.className = index === 0 ? 'active' : '';
-                    sliderImages.appendChild( img );
-                } );
-
-                // Populate links
-                const modalLinks = document.querySelector( '.modal-links' );
-                modalLinks.innerHTML = '';
-                const linkTypes = [
-                    { type: 'website', label: 'Visit Website', tooltip: 'Go to the live project site' },
-                    { type: 'appstore', label: 'App Store', tooltip: 'Download on the App Store' },
-                    { type: 'playstore', label: 'Play Store', tooltip: 'Download on Google Play' }
-                ];
-                linkTypes.forEach( link =>
-                {
-                    if ( project.links[ link.type ] )
-                    {
-                        const a = document.createElement( 'a' );
-                        a.href = project.links[ link.type ];
-                        a.className = `modal-link ${ link.type }`;
-                        a.target = '_blank';
-                        a.rel = 'noopener noreferrer';
-                        a.innerHTML = `${ link.label }<span class="modal-link-tooltip">${ link.tooltip }</span>`;
-                        modalLinks.appendChild( a );
-                    }
-                } );
-
-                // Reset slider
-                currentSlide = 0;
-                updateSlider();
-
-                // Show modal and lock body
-                projectModal.classList.add( 'active' );
-                document.body.classList.add( 'modal-active' );
+                console.error( `Project data not found for ID: ${ projectId }` );
+                return;
             }
+
+            scrollPosition = window.scrollY;
+
+            modalTitle.textContent = project.title;
+            modalText.textContent = project.description;
+
+            sliderImages.innerHTML = '';
+            project.images.forEach( ( src, index ) =>
+            {
+                const img = document.createElement( 'img' );
+                img.src = src;
+                img.alt = `${ project.title } screenshot`;
+                img.className = index === 0 ? 'active' : '';
+                sliderImages.appendChild( img );
+            } );
+
+            const modalVideo = document.querySelector( '.modal-video' );
+            if ( modalVideo )
+            {
+                modalVideo.innerHTML = '';
+                modalVideo.classList.remove( 'modal-video-hidden' );
+                if ( project.youtube && typeof project.youtube === 'string' && project.youtube.startsWith( 'https://www.youtube.com/embed/' ) )
+                {
+                    const iframe = document.createElement( 'iframe' );
+                    iframe.src = project.youtube;
+                    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+                    iframe.allowFullscreen = true;
+                    iframe.title = `${ project.title } YouTube Video`;
+                    iframe.setAttribute( 'frameborder', '0' );
+                    iframe.style.display = 'block';
+                    iframe.addEventListener( 'error', () =>
+                    {
+                        console.error( `Failed to load YouTube video for ${ projectId }: ${ project.youtube }` );
+                        modalVideo.innerHTML = `
+                            <div style="color: #fff; text-align: center; padding: 20px; background: #1E1E1E; border: 1px solid #5C6BC0; border-radius: 16px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <p>Video blocked (ad-blocker or browser settings). Disable ad-blockers or <a href="${ project.youtube.split( '?' )[ 0 ] }" target="_blank" style="color: #5C6BC0; text-decoration: underline;">watch on YouTube</a>.</p>
+                                <button onclick="window.location.href='${ project.youtube }'" style="background: #5C6BC0; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-top: 10px;">Play Video</button>
+                            </div>`;
+                        modalVideo.classList.remove( 'modal-video-hidden' );
+                    } );
+                    iframe.addEventListener( 'load', () =>
+                    {
+                        console.log( `YouTube iframe loaded for ${ projectId }` );
+                    } );
+                    modalVideo.appendChild( iframe );
+                } else
+                {
+                    modalVideo.innerHTML = `
+                        <div style="color: #fff; text-align: center; padding: 20px; background: #1E1E1E; border: 1px solid #5C6BC0; border-radius: 16px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <p>No video available for this project.</p>
+                        </div>`;
+                    modalVideo.classList.add( 'modal-video-hidden' );
+                }
+            } else
+            {
+                console.error( 'modalVideo element not found in DOM' );
+            }
+
+            const modalLinks = document.querySelector( '.modal-links' );
+            modalLinks.innerHTML = '';
+            const linkTypes = [
+                { type: 'website', label: 'Visit Website', tooltip: 'Go to the live project site' },
+                { type: 'appstore', label: 'App Store', tooltip: 'Download on the App Store' },
+                { type: 'playstore', label: 'Play Store', tooltip: 'Download on Google Play' }
+            ];
+            linkTypes.forEach( link =>
+            {
+                if ( project.links[ link.type ] )
+                {
+                    const a = document.createElement( 'a' );
+                    a.href = project.links[ link.type ];
+                    a.className = `modal-link ${ link.type }`;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.innerHTML = `${ link.label }<span class="modal-link-tooltip">${ link.tooltip }</span>`;
+                    modalLinks.appendChild( a );
+                }
+            } );
+
+            currentSlide = 0;
+            updateSlider();
+
+            projectModal.classList.add( 'active' );
+            document.body.classList.add( 'modal-active' );
         } catch ( e )
         {
             console.error( 'Error opening project modal:', e );
         }
     };
 
-    // Function to close modal
     const closeModal = () =>
     {
         try
         {
             projectModal.classList.remove( 'active' );
             document.body.classList.remove( 'modal-active' );
-            // Restore scroll position
             window.scrollTo( 0, scrollPosition );
         } catch ( e )
         {
@@ -711,13 +743,12 @@ document.addEventListener( 'DOMContentLoaded', () =>
         }
     };
 
-    // Slider navigation
     function updateSlider ()
     {
         const totalSlides = sliderImages.children.length;
         if ( totalSlides > 0 )
         {
-            currentSlide = ( currentSlide + totalSlides ) % totalSlides; // Wrap around
+            currentSlide = ( currentSlide + totalSlides ) % totalSlides;
             const images = sliderImages.querySelectorAll( 'img' );
             images.forEach( ( img, index ) =>
             {
@@ -727,14 +758,12 @@ document.addEventListener( 'DOMContentLoaded', () =>
                     img.classList.add( 'active' );
                 }
             } );
-            // Center the active image
             const activeImage = sliderImages.children[ currentSlide ];
             const offset = -( activeImage.offsetWidth * currentSlide - ( sliderImages.parentElement.offsetWidth / 2 - activeImage.offsetWidth / 2 ) );
             sliderImages.style.transform = `translateX(${ offset }px)`;
         }
     }
 
-    // Open modal when clicking project card
     projectCards.forEach( card =>
     {
         card.addEventListener( 'click', () => openModal( card ) );
@@ -745,7 +774,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
         } );
     } );
 
-    // Close modal when clicking outside
     projectModal.addEventListener( 'click', ( e ) =>
     {
         if ( e.target === projectModal )
@@ -762,7 +790,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
         }
     } );
 
-    // Next/Prev slide
     if ( sliderNext )
     {
         sliderNext.addEventListener( 'click', () =>
@@ -793,7 +820,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
         } );
     }
 
-    // Swipe support
     let touchStartX = 0;
     let touchEndX = 0;
 
