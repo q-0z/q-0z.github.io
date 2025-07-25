@@ -136,6 +136,11 @@
                         <h3>CHARISMA VR</h3>
                         <p>Series of game to simulation like claw machine, music game, interactive dart game</p>
                     </div>
+                    <div class="project-card" data-project-id="FT Diagnostic">
+                        <img src="images/Projects/dtc_1.png" alt="charisma vr">
+                        <h3>DTC Diagnostic</h3>
+                        <p>Advance vehicle diagnostic tool for user to figuire out the detail statistics for the cars</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -181,25 +186,25 @@
     <audio id="my-audio" src="sound/ding.mp3"></audio>
     <div id="animation-toggle"><s>JS</s></div>
     <!-- Remove the modal-close and scale controls -->
-    <div id="project-modal" class="project-modal">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="modal-slider">
-                    <div class="slider-container">
-                        <div class="modal-video"></div>
-                        <div class="slider-images" id="slider-images"></div>
-                    </div>
-                    <button class="slider-prev" id="slider-prev"></button>
-                    <button class="slider-next" id="slider-next"></button>
+<div id="project-modal" class="project-modal">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-slider">
+                <div class="slider-container">
+                    <div id="slider-main" class="slider-main"></div>
+                    <div id="slider-thumbnails" class="slider-thumbnails"></div>
+                    <button id="slider-prev" class="slider-prev"></button>
+                    <button id="slider-next" class="slider-next"></button>
                 </div>
-                <div class="modal-description">
-                    <h3 id="modal-title"></h3>
-                    <p id="modal-text"></p>
-                    <div class="modal-links"></div>
-                </div>
+            </div>
+            <div class="modal-description">
+                <h3 id="modal-title"></h3>
+                <p id="modal-text"></p>
+                <div class="modal-links"></div>
             </div>
         </div>
     </div>
+</div>
     <script src="script.js"></script>
     <script src="user.js"></script>
 </body>

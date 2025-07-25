@@ -450,7 +450,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/WM_1.png',
                 'images/Projects/WM_2.png'
             ],
-            youtube: null,
+            youtube: 'https://www.youtube.com/embed/4NAiwfN5Lk2n7mFS?autoplay=1&mute=1&rel=0',
             links: {
                 website: 'https://images-na.ssl-images-amazon.com/images/I/D1dGrPKK+wS.mp4',
                 appstore: 'https://www.amazon.com/Biswa-Games-Word-Mason/dp/B01DRPHZ02/ref=sr_1_2?dib=eyJ2IjoiMSJ9.H3is2MQrwhn5aURB1yIcIo2pn1FDBcyXvThr52GTgL3GjHj071QN20LucGBJIEps.yUgsBa-dhUcrI93EEjQMgBL0_VCJ3KaWi_xYERShqX8&dib_tag=se&qid=1749701848&refinements=p_4%3ABiswa+Games&s=mobile-apps&search-type=ss&sr=1-2',
@@ -465,7 +465,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/MB_1.jpg',
                 'images/Projects/MB_2.jpg'
             ],
-            youtube: null,
+            youtube: 'https://www.youtube.com/embed/6ugHLAM0pRE?autoplay=1&mute=1&rel=0',
             links: {
                 website: 'https://images-na.ssl-images-amazon.com/images/I/E1K7dINbjGS.mp4',
                 appstore: 'https://www.amazon.com/Biswa-Games-Maze-Bomber/dp/B01MSQBKDQ/ref=sr_1_1?dib=eyJ2IjoiMSJ9.H3is2MQrwhn5aURB1yIcIo2pn1FDBcyXvThr52GTgL3GjHj071QN20LucGBJIEps.yUgsBa-dhUcrI93EEjQMgBL0_VCJ3KaWi_xYERShqX8&dib_tag=se&qid=1749700435&refinements=p_4%3ABiswa+Games&s=mobile-apps&sr=1-1',
@@ -556,7 +556,7 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 'images/Projects/fs_3.jpg',
                 'images/Projects/fs_4.jpg',
             ],
-            youtube: null,
+            youtube: 'https://www.youtube.com/watch?v=BUoqRgV8FUE?autoplay=1&mute=1&rel=0',
             links: {
                 website: 'https://store.steampowered.com/app/2859900/FIRESKY/',
                 appstore: null,
@@ -626,6 +626,18 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 appstore: null,
                 playstore: null
             }
+        },
+        'FT Diagnostic': {
+            title: 'DTC Diagnostic',
+            description: 'Advance vehicle diagnostic tool for user to figuire out the detail statistics for the cars',
+            images: [
+            ],
+            youtube: 'https://www.youtube.com/embed/nxpNzSDJsCo?autoplay=1&mute=1&rel=0',
+            links: {
+                website: null,
+                appstore: null,
+                playstore: null
+            }
         }
     };
 
@@ -644,8 +656,6 @@ document.addEventListener( 'DOMContentLoaded', () =>
 
             scrollPosition = window.scrollY;
 
-            const modalTitle = document.getElementById( 'modal-title' );
-            const modalText = document.getElementById( 'modal-text' );
             if ( !modalTitle || !modalText )
             {
                 console.error( 'Modal title or text element not found in DOM' );
@@ -654,37 +664,75 @@ document.addEventListener( 'DOMContentLoaded', () =>
             modalTitle.textContent = project.title;
             modalText.textContent = project.description;
 
-            const sliderImages = document.getElementById( 'slider-images' );
-            if ( !sliderImages )
+            //
+            const modalLinks = projectModal.querySelector( '.modal-links' ) || document.createElement( 'div' );
+            modalLinks.className = 'modal-links';
+            modalLinks.innerHTML = '';
+            if ( project.links.website )
             {
-                console.error( 'slider-images element not found in DOM' );
+                const websiteLink = document.createElement( 'a' );
+                websiteLink.href = project.links.website;
+                websiteLink.textContent = 'Website';
+                websiteLink.target = '_blank';
+                modalLinks.appendChild( websiteLink );
+            }
+            if ( project.links.appstore )
+            {
+                const appStoreLink = document.createElement( 'a' );
+                appStoreLink.href = project.links.appstore;
+                appStoreLink.textContent = 'App Store';
+                appStoreLink.target = '_blank';
+                modalLinks.appendChild( appStoreLink );
+            }
+            if ( project.links.playstore )
+            {
+                const playStoreLink = document.createElement( 'a' );
+                playStoreLink.href = project.links.playstore;
+                playStoreLink.textContent = 'Play Store';
+                playStoreLink.target = '_blank';
+                modalLinks.appendChild( playStoreLink );
+            }
+            modalText.parentElement.appendChild( modalLinks );
+            // Ensure modal content is fully loaded before accessing slider elements
+            if ( !projectModal )
+            {
+                console.error( 'project-modal element not found in DOM' );
                 return;
             }
-            sliderImages.innerHTML = '';
-            project.images.forEach( ( src, index ) =>
+            const sliderMain = projectModal.querySelector( '#slider-main' );
+            const sliderThumbnails = projectModal.querySelector( '#slider-thumbnails' );
+            if ( !sliderMain || !sliderThumbnails )
             {
-                const img = document.createElement( 'img' );
-                img.src = src;
-                img.alt = `${ project.title } screenshot`;
-                img.className = index === 0 ? 'active' : '';
-                sliderImages.appendChild( img );
-            } );
-            /////////
-            // Create modal-video element if it doesn't exist
-            let modalVideo = document.querySelector( '.modal-video' );
+                console.error( 'slider-main or slider-thumbnails element not found in DOM' );
+                return;
+            }
+            sliderMain.innerHTML = '';
+            sliderThumbnails.innerHTML = '';
+
+            // Add video thumbnail and main content if available
+// Add video thumbnail and main content if available
+            let modalVideo = projectModal.querySelector( '.modal-video' );
             if ( !modalVideo )
             {
                 modalVideo = document.createElement( 'div' );
                 modalVideo.classList.add( 'modal-video', 'modal-video-hidden' );
-                document.querySelector( '.slider-container' )?.appendChild( modalVideo );
+                modalVideo.dataset.index = '0'; // Assign index for video
+                sliderMain.appendChild( modalVideo );
             }
-
-            modalVideo.innerHTML = '';
-            modalVideo.classList.remove( 'modal-video-hidden' );
-            sliderImages.prepend( modalVideo );
 
             if ( project.youtube && typeof project.youtube === 'string' && project.youtube.startsWith( 'https://www.youtube.com/embed/' ) )
             {
+                // Create thumbnail for video
+                const videoId = project.youtube.split( '/embed/' )[1].split( '?' )[0];
+                const thumbnail = document.createElement( 'div' );
+                thumbnail.classList.add( 'thumbnail-video' );
+                thumbnail.dataset.index = '0';
+                thumbnail.style.backgroundImage = `ur[](https://img.youtube.com/vi/${videoId}/mqdefault.jpg)`;
+                sliderThumbnails.appendChild( thumbnail );
+
+                // Create main video
+                modalVideo.innerHTML = '';
+                modalVideo.classList.remove( 'modal-video-hidden' );
                 const iframe = document.createElement( 'iframe' );
                 iframe.src = project.youtube.includes( 'enablejsapi' ) ? project.youtube : `${ project.youtube }&enablejsapi=1`;
                 iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
@@ -716,18 +764,34 @@ document.addEventListener( 'DOMContentLoaded', () =>
                 modalVideo.innerHTML = '';
             }
 
-            // Event delegation for click handling
-            document.querySelector( '.slider-container' )?.addEventListener( 'click', ( e ) =>
+            // Add image thumbnails and main content
+            project.images.forEach( ( src, index ) =>
             {
-                const target = e.target.closest( '.modal-video, img' );
-                if ( target )
+                const offset = project.youtube ? 1 : 0;
+                const img = document.createElement( 'img' );
+                img.src = src;
+                img.alt = `${ project.title } screenshot`;
+                img.className = index === 0 && !project.youtube ? 'active' : '';
+                img.dataset.index = (index + offset).toString(); // Add index for reference
+                sliderMain.appendChild( img );
+
+                const thumb = document.createElement( 'img' );
+                thumb.src = src;
+                thumb.alt = `${ project.title } thumbnail`;
+                thumb.dataset.index = (index + offset).toString();
+                sliderThumbnails.appendChild( thumb );
+            } );
+
+            // Event delegation for thumbnail clicks
+            sliderThumbnails.addEventListener( 'click', ( e ) =>
+            {
+                const target = e.target.closest( '.thumbnail-video, img' );
+                if ( target && target.dataset.index )
                 {
-                    const index = target.classList.contains( 'modal-video' ) ? 0 : Array.from( sliderImages.querySelectorAll( 'img' ) ).indexOf( target ) + ( modalVideo.classList.contains( 'modal-video-hidden' ) ? 0 : 1 );
-                    currentSlide = index;
+                    currentSlide = parseInt( target.dataset.index, 10 );
                     updateSlider();
                 }
-            } );
-            ///////////////
+            }, { passive: true } );
 
             projectModal.classList.add( 'active' );
             document.body.classList.add( 'modal-active' );
@@ -754,44 +818,67 @@ document.addEventListener( 'DOMContentLoaded', () =>
 
     function updateSlider ()
     {
-        const modalVideo = document.querySelector( '.modal-video' );
+        const projectModal = document.getElementById( 'project-modal' );
+        if ( !projectModal )
+        {
+            console.error( 'project-modal element not found in DOM' );
+            return;
+        }
+        const modalVideo = projectModal.querySelector( '.modal-video' );
+        if ( !modalVideo )
+        {
+            console.error( 'modal-video element not found in DOM' );
+            return;
+        }
+        const sliderMain = projectModal.querySelector( '#slider-main' );
+        const sliderThumbnails = projectModal.querySelector( '#slider-thumbnails' );
+        if ( !sliderMain || !sliderThumbnails )
+        {
+            console.error( 'slider-main or slider-thumbnails element not found in DOM' );
+            return;
+        }
         const hasVideo = !modalVideo.classList.contains( 'modal-video-hidden' );
-        const images = sliderImages.querySelectorAll( 'img' );
+        const images = sliderMain.querySelectorAll( 'img' );
+        const thumbnails = sliderThumbnails.querySelectorAll( '.thumbnail-video, img' );
         const totalSlides = hasVideo ? images.length + 1 : images.length;
         if ( totalSlides > 0 )
         {
-            currentSlide = ( currentSlide + totalSlides ) % totalSlides;
+            // Ensure currentSlide stays within bounds
+            currentSlide = Math.max( 0, Math.min( currentSlide, totalSlides - 1 ) );
             modalVideo.classList.toggle( 'active', hasVideo && currentSlide === 0 );
             images.forEach( ( img, index ) =>
             {
-                img.classList.remove( 'active' );
-                if ( hasVideo && currentSlide > 0 && index === currentSlide - 1 )
-                {
-                    img.classList.add( 'active' );
-                } else if ( !hasVideo && index === currentSlide )
-                {
-                    img.classList.add( 'active' );
-                }
+                img.classList.toggle( 'active', parseInt(img.dataset.index, 10) === currentSlide );
             } );
-            const slideWidth = hasVideo && currentSlide === 0
-                ? modalVideo.getBoundingClientRect().width
-                : ( images[ 0 ]?.getBoundingClientRect().width || 280 );
-            const containerWidth = sliderImages.parentElement.getBoundingClientRect().width;
-            const gap = 16;
-            const totalContentWidth = slideWidth * totalSlides + ( totalSlides - 1 ) * gap;
-            const maxOffset = Math.max( 0, totalContentWidth - containerWidth );
-            const offset = -( slideWidth * currentSlide + ( currentSlide * gap ) );
-            sliderImages.style.transform = `translateX(${ Math.max( offset, -maxOffset ) }px)`;
+            thumbnails.forEach( ( thumb, index ) =>
+            {
+                thumb.classList.toggle( 'active', index === currentSlide );
+            } );
             const iframe = modalVideo.querySelector( 'iframe' );
             if ( hasVideo && iframe )
             {
-                if ( currentSlide === 0 )
+                try
                 {
-                    iframe.contentWindow.postMessage( '{"event":"command","func":"playVideo","args":""}', '*' );
-                } else
+                    if ( currentSlide === 0 )
+                    {
+                        iframe.contentWindow.postMessage( '{"event":"command","func":"playVideo","args":""}', '*' );
+                    } else
+                    {
+                        iframe.contentWindow.postMessage( '{"event":"command","func":"pauseVideo","args":""}', '*' );
+                    }
+                } catch ( error )
                 {
-                    iframe.contentWindow.postMessage( '{"event":"command","func":"pauseVideo","args":""}', '*' );
+                    console.error( 'Error controlling YouTube iframe:', error );
                 }
+            }
+            // Center the active thumbnail
+            const activeThumb = thumbnails[ currentSlide ];
+            if ( activeThumb )
+            {
+                const thumbRect = activeThumb.getBoundingClientRect();
+                const containerRect = sliderThumbnails.getBoundingClientRect();
+                const scrollOffset = thumbRect.left - containerRect.left - ( containerRect.width - thumbRect.width ) / 2;
+                sliderThumbnails.scrollTo( { left: sliderThumbnails.scrollLeft + scrollOffset, behavior: 'smooth' } );
             }
         }
     }
@@ -806,63 +893,70 @@ document.addEventListener( 'DOMContentLoaded', () =>
         } );
     } );
 
-    projectModal.addEventListener( 'click', ( e ) =>
+    if ( projectModal )
     {
-        if ( e.target === projectModal )
+        projectModal.addEventListener( 'click', ( e ) =>
         {
-            closeModal();
-        }
-    } );
-    projectModal.addEventListener( 'touchend', ( e ) =>
-    {
-        if ( e.target === projectModal )
+            if ( e.target === projectModal )
+            {
+                closeModal();
+            }
+        } );
+        projectModal.addEventListener( 'touchend', ( e ) =>
         {
-            e.preventDefault();
-            closeModal();
-        }
-    } );
+            if ( e.target === projectModal )
+            {
+                e.preventDefault();
+                closeModal();
+            }
+        } );
 
-    if ( sliderNext )
-    {
-        sliderNext.addEventListener( 'click', () =>
+        const sliderNext = projectModal.querySelector( '#slider-next' );
+        const sliderPrev = projectModal.querySelector( '#slider-prev' );
+        if ( sliderNext )
         {
-            currentSlide++;
-            updateSlider();
-        } );
-        sliderNext.addEventListener( 'touchend', ( e ) =>
+            sliderNext.addEventListener( 'click', ( e ) =>
+            {
+                e.preventDefault();
+                currentSlide++;
+                updateSlider();
+            }, { passive: true } );
+            sliderNext.addEventListener( 'touchend', ( e ) =>
+            {
+                e.preventDefault();
+                currentSlide++;
+                updateSlider();
+            }, { passive: true } );
+        }
+        if ( sliderPrev )
         {
-            e.preventDefault();
-            currentSlide++;
-            updateSlider();
-        } );
-    }
-
-    if ( sliderPrev )
-    {
-        sliderPrev.addEventListener( 'click', () =>
-        {
-            currentSlide--;
-            updateSlider();
-        } );
-        sliderPrev.addEventListener( 'touchend', ( e ) =>
-        {
-            e.preventDefault();
-            currentSlide--;
-            updateSlider();
-        } );
+            sliderPrev.addEventListener( 'click', ( e ) =>
+            {
+                e.preventDefault();
+                currentSlide--;
+                updateSlider();
+            }, { passive: true } );
+            sliderPrev.addEventListener( 'touchend', ( e ) =>
+            {
+                e.preventDefault();
+                currentSlide--;
+                updateSlider();
+            }, { passive: true } );
+        }
     }
 
     let touchStartX = 0;
     let touchEndX = 0;
 
-    if ( sliderImages )
+    const sliderThumbnails = projectModal?.querySelector( '#slider-thumbnails' );
+    if ( sliderThumbnails )
     {
-        sliderImages.addEventListener( 'touchstart', ( e ) =>
+        sliderThumbnails.addEventListener( 'touchstart', ( e ) =>
         {
             touchStartX = e.changedTouches[ 0 ].pageX;
         } );
 
-        sliderImages.addEventListener( 'touchend', ( e ) =>
+        sliderThumbnails.addEventListener( 'touchend', ( e ) =>
         {
             touchEndX = e.changedTouches[ 0 ].pageX;
             if ( touchEndX - touchStartX > 50 )
