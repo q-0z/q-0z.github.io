@@ -257,7 +257,76 @@ document.addEventListener( 'DOMContentLoaded', () =>
             ctx.clearRect( 0, 0, canvas.width, canvas.height );
         }
     } );
+    //////////////////////////////////////////////////////////////////////////////////
+    let videoEnabled = false;
+    const videoToggle = document.getElementById('video-toggle');
+    const backgroundVideo = document.getElementById('background-video');
+  if (videoToggle && backgroundVideo) {
+        const toggleVideo = () => {
+            try {
+                videoEnabled = !videoEnabled;
+                videoToggle.innerHTML = videoEnabled ? '🎥' : '<s>🎥</s>';
+                if (videoEnabled) {
+                    backgroundVideo.style.display = 'block';
+                    backgroundVideo.currentTime = 5; // Start video at 1 second
+                    backgroundVideo.play();
+                } else {
+                    backgroundVideo.pause();
+                    backgroundVideo.currentTime = 5;
+                    backgroundVideo.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Video toggle error:', error);
+            }
+        };
+        videoToggle.addEventListener('click', toggleVideo);
+        videoToggle.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            toggleVideo();
+        });
 
+        // Scroll-based seeking
+        const scrollSpeed = 0.015; // Adjusts how fast the video seeks when scrolling
+        let isScrolling = false;
+        let scrollTimeout;
+
+        document.addEventListener('scroll', () => {
+            if (videoEnabled) {
+                try {
+                    const currentScrollY = window.scrollY;
+                    const delta = currentScrollY - lastScrollY;
+                    lastScrollY = currentScrollY;
+
+                    // Update video time based on scroll
+                    backgroundVideo.currentTime = Math.max(0, Math.min(backgroundVideo.duration || 1, backgroundVideo.currentTime + delta * scrollSpeed));
+
+                    // Ensure video is playing while scrolling
+                    if (backgroundVideo.paused) {
+                        backgroundVideo.play();
+                    }
+
+                    // Mark as scrolling and reset timeout
+                    isScrolling = true;
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        isScrolling = false;
+                        backgroundVideo.pause(); // Pause video when scrolling stops
+                    }, 150); // Adjust delay (ms) to detect scroll stop
+                } catch (error) {
+                    console.error('Scroll video time update error:', error);
+                }
+            }
+        });
+
+        // Wait for video to be ready
+        backgroundVideo.addEventListener('loadedmetadata', () => {
+            console.log('Video metadata loaded, duration:', backgroundVideo.duration);
+            backgroundVideo.currentTime = 0;
+            // Video starts paused until scrolling begins
+            backgroundVideo.pause();
+        });
+    }
+/////////////////////////////////////////////////////////////////////////////////
     let soundEnabled = true;
     const soundToggle = document.getElementById( 'sound-toggle' );
     const myAudio = document.getElementById( 'my-audio' );
